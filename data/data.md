@@ -15,8 +15,11 @@ The raw variant contains the raw tokens whereas the non-raw variant only contain
 
 ## Dataset Link
 
-The full dataset can be accessed here:
-[WikiText on Hugging Face](https://huggingface.co/datasets/Salesforce/wikitext)
+We downloaded our data from [WikiText on Hugging Face](https://huggingface.co/datasets/Salesforce/wikitext)
+
+The google drive link is [here](https://drive.google.com/file/d/1gQv0dGApLkS081x8XkynwnFCFsBm0Dzg/view?usp=sharing)
+
+You may also refer to our [github repo](https://github.com/geneam2/Improving-Efficiency-In-LLMs/tree/reorganized_folders/data)
 
 ## Example Data
 
@@ -51,6 +54,3 @@ The dataset is available under the [Creative Commons Attribution-ShareAlike Lice
 }
 ```
 
-### Contributions
-
-Thanks to [@thomwolf](https://github.com/thomwolf), [@lewtun](https://github.com/lewtun), [@patrickvonplaten](https://github.com/patrickvonplaten), [@mariamabarham](https://github.com/mariamabarham) for adding this dataset.
