@@ -26,7 +26,7 @@ def tokenize_qa(data):
     )
     start_positions = []
     end_positions = []
-    for i, answer in enumerate(data["answers"]):
+    for answer in data["answers"]:
         # SQuAD contains unanswerable questions so answer["answer_start"] is empty for those
         if answer["answer_start"]:
             start = answer["answer_start"][0]
