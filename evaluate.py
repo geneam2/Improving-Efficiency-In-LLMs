@@ -1,4 +1,7 @@
 
+import os
+import sys
+
 from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering, Trainer
 from utils import device
@@ -9,11 +12,19 @@ dataset = load_dataset("squad_v2")
 train_dataset = dataset["train"]
 valid_dataset = dataset["validation"]
 
-saved_weights_folder = "./saved_weights"
+saved_weights_folder = os.path.join(
+    os.path.dirname(__file__), "saved_weights")
+
+print("Weights folder:", saved_weights_folder)
 model = AutoModelForQuestionAnswering.from_pretrained(saved_weights_folder)
 model.to(device)
 tokenizer = AutoTokenizer.from_pretrained(saved_weights_folder)
-training_args = torch.load("saved_weights/training_args.bin")
+
+training_args_path = os.path.join(
+    saved_weights_folder, "training_args.bin")
+
+print("Training args path:", training_args_path)
+training_args = torch.load(training_args_path)
 
 # Tokenize QA data
 def tokenize_qa(data):
