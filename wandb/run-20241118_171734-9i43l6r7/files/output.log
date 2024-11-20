@@ -1,8 +1,0 @@
-  1%|▎                                                     | 266/48870 [01:30<4:13:41,  3.19it/s]Traceback (most recent call last):
-  File "/Users/genelam/llm-efficiency/train.py", line 73, in <module>
-    trainer.train()
-  File "/Users/genelam/llm-efficiency/venv/lib/python3.10/site-packages/transformers/trainer.py", line 2123, in train
-    return inner_training_loop(
-  File "/Users/genelam/llm-efficiency/venv/lib/python3.10/site-packages/transformers/trainer.py", line 2486, in _inner_training_loop
-    and (torch.isnan(tr_loss_step) or torch.isinf(tr_loss_step))
-KeyboardInterrupt

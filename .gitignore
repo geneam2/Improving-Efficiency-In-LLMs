@@ -1,3 +1,7 @@
 venv
 lm-evaluation-harness
 __pycache__
+wandb
+predicted_output.json
+actual_output.json
+.DS_Store
