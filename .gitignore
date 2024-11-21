@@ -4,4 +4,6 @@ __pycache__
 wandb
 predicted_output.json
 actual_output.json
+simple_actual_output.json
+simple_predicted_output.json
 .DS_Store

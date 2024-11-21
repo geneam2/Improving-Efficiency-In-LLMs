@@ -3,10 +3,11 @@ from datasets import load_dataset
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 import numpy as np
 import collections
-import evaluate
-import random
-from utils import device
 import time
+
+device = torch.set_default_device("mps")
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+device
 
 # Load the dataset, model, and tokenizer
 eval_dataset = load_dataset("squad", split="validation")
@@ -149,31 +150,10 @@ print("Actual: ", example_actual)
 # Save dictionary to a JSON file
 import json
 
-with open("predicted_output.json", "w", encoding="utf-8") as f:
+with open("simple_predicted_output.json", "w", encoding="utf-8") as f:
     json.dump(predicted_tokenized, f, indent=4)
 
-with open("actual_output.json", "w", encoding="utf-8") as f:
+with open("simple_actual_output.json", "w", encoding="utf-8") as f:
     json.dump(actual_tokenized, f, indent=4)
 
-"""# SQuAD's Built-In Metrics: Exact-Match and F1"""
-
-metric = evaluate.load("squad")
-actual_answers = [
-    {"id": ex["id"], "answers": ex["answers"]} for ex in small_eval_set
-]
-
-num_samples = 5
-random_idx = random.sample(range(len(actual_answers)), num_samples)
-for i in random_idx:
-    assert predicted_answers[i]["id"] == actual_answers[i]["id"]
-    id = predicted_answers[i]["id"]
-    predicted = predicted_answers[i]["prediction_text"]
-    actual = actual_answers[i]["answers"]["text"][0]
-    print(f"""Example {id}:
-        Predicted: {predicted}
-        Actual:    {actual}
-    """)
-
-evals = metric.compute(predictions=predicted_answers, references=actual_answers)
-print(evals)
 print(f"{round(inference_time, 2)} seconds")

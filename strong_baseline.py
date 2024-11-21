@@ -3,21 +3,19 @@ from datasets import load_dataset
 from transformers import AutoModelForQuestionAnswering, AutoTokenizer, TrainingArguments, Trainer
 import numpy as np
 import collections
-import evaluate
-import random
 import time
-from utils import device
-import os
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-        
+
+# Change this!
+device = torch.device("cpu")
+
 """# Fine-tune DistilBERT"""
 
 # Load the dataset, model, and tokenizer
 dataset = load_dataset("squad")
 train_dataset = dataset["train"]
 eval_dataset = dataset["validation"]
-small_train_set = train_dataset.shuffle(seed=42).select(range(800)) # can probably go 10x higher
-small_eval_set = eval_dataset.shuffle(seed=42).select(range(200)) # can probably go 10x higher
+small_train_set = train_dataset.shuffle(seed=42).select(range(8000)) # can probably go 10x higher
+small_eval_set = eval_dataset.shuffle(seed=42).select(range(2000)) # can probably go 10x higher
 
 model_name = "distilbert-base-uncased"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -37,6 +35,7 @@ def preprocess_train(dataset):
             input_ids: tokenized q and c into sequences of length max_length
             attention_mask: 1 for padding, 0 otherwise
             offset_mapping: list of tuples representing the start and end of each token
+            overflow_to_sample_mapping : maps each sequence to their original id idx
         Output: dataset containing ['input_ids', 'attention_mask', 'offset_mapping', 'example_id']
     '''
     inputs = tokenizer(
@@ -49,25 +48,28 @@ def preprocess_train(dataset):
         return_offsets_mapping=True,
         padding="max_length",
     )
-    # returns: dict_keys(['input_ids', 'attention_mask', 'offset_mapping', 'overflow_to_sample_mapping'])
+    # returns: dict_keys([ids, type_ids, tokens, offsets, attention_mask, special_tokens_mask, overflowing])
 
     offset_map = inputs.pop("offset_mapping")
-    sample_map = inputs.pop("overflow_to_sample_mapping") # maps each sequence to their original id idx
+    # cols: [[(0, 0), (0, 4), (5, 15), (16, 18), (19, 28), (29, 35), ...], ...]
+    sample_map = inputs.pop("overflow_to_sample_mapping")
+    # rows: [0, 0, 1, 1, 2, 2, 3, 3, ...]
     answers = dataset["answers"]
+
     start_positions = []
     end_positions = []
     for i, offset in enumerate(offset_map):
         sample_idx = sample_map[i]
+        # Get indices of where the answers are
         answer = answers[sample_idx]
         start_char = answer["answer_start"][0]
         end_char = answer["answer_start"][0] + len(answer["text"][0])
-        sequence_ids = inputs.sequence_ids(i)
 
-        # Find the start and end of the context
-        idx = 0
-        while sequence_ids[idx] != 1:
-            idx += 1
-        context_start = idx
+        # Get indices of where the context starts and ends in your input_ids
+        sequence_ids = inputs.sequence_ids(i)
+        # [None, 0, 0, 0, 0, 0, 0, 0, None, 1, 1, ...]
+        context_start = sequence_ids.index(1)
+        idx = context_start
         while sequence_ids[idx] == 1:
             idx += 1
         context_end = idx - 1
@@ -105,11 +107,12 @@ eval_tokenized = small_eval_set.map(
 )
 
 # Train
+# Wandb.ai:
 train_tokenized.set_format("torch")
 eval_tokenized.set_format("torch")
 
 training_args = TrainingArguments(
-    output_dir="11/20 distilbert mps",
+    output_dir="11/20 distilbert",
     logging_strategy="steps",
     eval_strategy="epoch",
     save_strategy="epoch",
@@ -120,7 +123,7 @@ training_args = TrainingArguments(
     weight_decay=0.01,
     logging_dir="logs",
     logging_steps=10,
-    report_to="wandb",
+    report_to="wandb"
 )
 
 trainer = Trainer(
@@ -135,7 +138,7 @@ start_time = time.time()
 trainer.train()
 training_time = time.time() - start_time
 
-trainer.save_model('./disilbert_tuned_model')
+trainer.save_model('./disilbert_tuned_model2')
 tokenizer.save_pretrained('./disilbert_tuned_tokenizer')
 
 """# Evaluate our tuned model"""
@@ -281,32 +284,11 @@ print("Actual: ", example_actual)
 # Save dictionary to a JSON file
 import json
 
-with open("predicted_output.json", "w", encoding="utf-8") as f:
+with open("strong_predicted_output.json", "w", encoding="utf-8") as f:
     json.dump(predicted_tokenized, f, indent=4)
 
-with open("actual_output.json", "w", encoding="utf-8") as f:
+with open("strong_actual_output.json", "w", encoding="utf-8") as f:
     json.dump(actual_tokenized, f, indent=4)
 
-"""# SQuAD's Built-In Metrics: Exact-Match and F1"""
-
-metric = evaluate.load("squad")
-actual_answers = [
-    {"id": ex["id"], "answers": ex["answers"]} for ex in small_eval_set
-]
-
-num_samples = 5
-random_idx = random.sample(range(len(actual_answers)), num_samples)
-for i in random_idx:
-    assert predicted_answers[i]["id"] == actual_answers[i]["id"]
-    id = predicted_answers[i]["id"]
-    predicted = predicted_answers[i]["prediction_text"]
-    actual = actual_answers[i]["answers"]["text"][0]
-    print(f"""Example {id}:
-        Predicted: {predicted}
-        Actual:    {actual}
-    """)
-
-evals = metric.compute(predictions=predicted_answers, references=actual_answers)
-print(evals)
 print(f"{round(training_time, 2)} seconds")
 print(f"{round(inference_time, 2)} seconds")
