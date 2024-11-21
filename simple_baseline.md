@@ -1,6 +1,6 @@
 # Description
 
-Our simple baseline is a Question-Answering task using the pre-trained model, DistilBERT. We chose it for its lightweight capabilities as it was distilled from BERT with natural language understanding tasks in mind, making it suitable for our compute-constrained environment. We load the SQuAD dataset, model, and tokenizer, process each example, run it through our model, and then evaluate on 200 question-answer pairs. From there, we are able to get predicted start and end indices of our answers, and construct a predicted answer.
+Our simple baseline is a Question-Answering task using the pre-trained model, DistilBERT. We chose it for its lightweight capabilities as it was distilled from BERT with natural language understanding tasks in mind, making it suitable for our compute-constrained environment. We load the SQuAD dataset, model, and tokenizer, process each example, run it through our model, and then evaluate on 200 question-answer pairs. From there, we are able to get predicted start and end indices of our answers, and construct a predicted answer. For our evaluation scores, we use exact-match and F1, and since we are ultimately trying to make the model more efficient, we also record the inference duration.
 
 # Sample Output
 
@@ -20,11 +20,9 @@ Actual: Newcastle Diamonds
 
 # Scores
 
-For DistilBERT, we achieved
 `SQuAD Exact-Match (out of 100): 0
 SQuAD F1: 6.68
-Our Exact-Match (out of 100):
-Our F1: `
+Inference Time: 1.28 seconds`
 
 # Resources:
 
