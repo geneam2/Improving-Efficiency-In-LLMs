@@ -1,0 +1,7322 @@
+[
+    {
+        "id": "572759665951b619008f8884",
+        "actual_text": [
+            "1852",
+            "1852",
+            "1852"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8784,
+                102
+            ],
+            [
+                101,
+                8784,
+                102
+            ],
+            [
+                101,
+                8784,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57296de03f37b3190047839e",
+        "actual_text": [
+            "1962",
+            "1962",
+            "1962"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3705,
+                102
+            ],
+            [
+                101,
+                3705,
+                102
+            ],
+            [
+                101,
+                3705,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726d4a45951b619008f7f6c",
+        "actual_text": [
+            "Horace Walpole",
+            "Horace Walpole",
+            "Horace Walpole"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                12757,
+                24547,
+                15049,
+                102
+            ],
+            [
+                101,
+                12757,
+                24547,
+                15049,
+                102
+            ],
+            [
+                101,
+                12757,
+                24547,
+                15049,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572843304b864d1900164848",
+        "actual_text": [
+            "several regional colleges and universities",
+            "Des Moines College, Kalamazoo College, Butler University, and Stetson University",
+            "Des Moines College, Kalamazoo College, Butler University, and Stetson University",
+            "Des Moines College, Kalamazoo College, Butler University, and Stetson University"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2195,
+                3164,
+                6667,
+                1998,
+                5534,
+                102
+            ],
+            [
+                101,
+                4078,
+                23286,
+                2267,
+                1010,
+                26209,
+                2863,
+                23221,
+                2267,
+                1010,
+                7055,
+                2118,
+                1010,
+                1998,
+                26261,
+                25656,
+                2118,
+                102
+            ],
+            [
+                101,
+                4078,
+                23286,
+                2267,
+                1010,
+                26209,
+                2863,
+                23221,
+                2267,
+                1010,
+                7055,
+                2118,
+                1010,
+                1998,
+                26261,
+                25656,
+                2118,
+                102
+            ],
+            [
+                101,
+                4078,
+                23286,
+                2267,
+                1010,
+                26209,
+                2863,
+                23221,
+                2267,
+                1010,
+                7055,
+                2118,
+                1010,
+                1998,
+                26261,
+                25656,
+                2118,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d729180d65d21400198427",
+        "actual_text": [
+            "Jonathan Stewart",
+            "Jonathan Stewart",
+            "Stewart"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5655,
+                5954,
+                102
+            ],
+            [
+                101,
+                5655,
+                5954,
+                102
+            ],
+            [
+                101,
+                5954,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57274beff1498d1400e8f5e6",
+        "actual_text": [
+            "30",
+            "30",
+            "30"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2382,
+                102
+            ],
+            [
+                101,
+                2382,
+                102
+            ],
+            [
+                101,
+                2382,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57274d905951b619008f87e3",
+        "actual_text": [
+            "Caris & Co.",
+            "Caris & Co.",
+            "Caris & Co."
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2482,
+                2483,
+                1004,
+                2522,
+                1012,
+                102
+            ],
+            [
+                101,
+                2482,
+                2483,
+                1004,
+                2522,
+                1012,
+                102
+            ],
+            [
+                101,
+                2482,
+                2483,
+                1004,
+                2522,
+                1012,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56bf1ae93aeaaa14008c951b",
+        "actual_text": [
+            "CBS",
+            "CBS",
+            "CBS"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6568,
+                102
+            ],
+            [
+                101,
+                6568,
+                102
+            ],
+            [
+                101,
+                6568,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264d9edd62a815002e8100",
+        "actual_text": [
+            "coordinate the response to the embargo",
+            "to coordinate the response to the embargo",
+            "to coordinate the response to the embargo",
+            "to coordinate the response to the embargo",
+            "to coordinate the response to the embargo"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                13530,
+                1996,
+                3433,
+                2000,
+                1996,
+                7861,
+                8237,
+                3995,
+                102
+            ],
+            [
+                101,
+                2000,
+                13530,
+                1996,
+                3433,
+                2000,
+                1996,
+                7861,
+                8237,
+                3995,
+                102
+            ],
+            [
+                101,
+                2000,
+                13530,
+                1996,
+                3433,
+                2000,
+                1996,
+                7861,
+                8237,
+                3995,
+                102
+            ],
+            [
+                101,
+                2000,
+                13530,
+                1996,
+                3433,
+                2000,
+                1996,
+                7861,
+                8237,
+                3995,
+                102
+            ],
+            [
+                101,
+                2000,
+                13530,
+                1996,
+                3433,
+                2000,
+                1996,
+                7861,
+                8237,
+                3995,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725c41eec44d21400f3d50b",
+        "actual_text": [
+            "Last Glacial Maximum",
+            "Last Glacial Maximum",
+            "Last Glacial Maximum"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2197,
+                17381,
+                4555,
+                102
+            ],
+            [
+                101,
+                2197,
+                17381,
+                4555,
+                102
+            ],
+            [
+                101,
+                2197,
+                17381,
+                4555,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e20a3ae3433e140042324d",
+        "actual_text": [
+            "\"Reducibility Among Combinatorial Problems\"",
+            "Reducibility Among Combinatorial Problems",
+            "\"Reducibility Among Combinatorial Problems\""
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1000,
+                2417,
+                14194,
+                13464,
+                2426,
+                22863,
+                23207,
+                4818,
+                3471,
+                1000,
+                102
+            ],
+            [
+                101,
+                2417,
+                14194,
+                13464,
+                2426,
+                22863,
+                23207,
+                4818,
+                3471,
+                102
+            ],
+            [
+                101,
+                1000,
+                2417,
+                14194,
+                13464,
+                2426,
+                22863,
+                23207,
+                4818,
+                3471,
+                1000,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572f59b4a23a5019007fc58a",
+        "actual_text": [
+            "Lake \u00dcberlingen",
+            "Lake \u00dcberlingen",
+            "Lake \u00dcberlingen"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2697,
+                19169,
+                2989,
+                2368,
+                102
+            ],
+            [
+                101,
+                2697,
+                19169,
+                2989,
+                2368,
+                102
+            ],
+            [
+                101,
+                2697,
+                19169,
+                2989,
+                2368,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727678e5951b619008f8973",
+        "actual_text": [
+            "Times Square Studios",
+            "Times Square Studios",
+            "Times Square Studios"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2335,
+                2675,
+                4835,
+                102
+            ],
+            [
+                101,
+                2335,
+                2675,
+                4835,
+                102
+            ],
+            [
+                101,
+                2335,
+                2675,
+                4835,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572867543acd2414000df9a1",
+        "actual_text": [
+            "fifteen",
+            "fifteen",
+            "fifteen"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5417,
+                102
+            ],
+            [
+                101,
+                5417,
+                102
+            ],
+            [
+                101,
+                5417,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57275f6ef1498d1400e8f709",
+        "actual_text": [
+            "1330 Avenue of the Americas in Manhattan",
+            "1330 Avenue of the Americas in Manhattan",
+            "1330 Avenue of the Americas in Manhattan"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14506,
+                2692,
+                3927,
+                1997,
+                1996,
+                10925,
+                1999,
+                7128,
+                102
+            ],
+            [
+                101,
+                14506,
+                2692,
+                3927,
+                1997,
+                1996,
+                10925,
+                1999,
+                7128,
+                102
+            ],
+            [
+                101,
+                14506,
+                2692,
+                3927,
+                1997,
+                1996,
+                10925,
+                1999,
+                7128,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730b255396df919000962b4",
+        "actual_text": [
+            "Bolshevik leaders",
+            "Bolshevik leaders",
+            "Bolshevik leaders",
+            "Bolshevik leaders"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                24477,
+                4177,
+                102
+            ],
+            [
+                101,
+                24477,
+                4177,
+                102
+            ],
+            [
+                101,
+                24477,
+                4177,
+                102
+            ],
+            [
+                101,
+                24477,
+                4177,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57298ef11d0469140077952f",
+        "actual_text": [
+            "random noise",
+            "random noise",
+            "random noise",
+            "random noise"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6721,
+                5005,
+                102
+            ],
+            [
+                101,
+                6721,
+                5005,
+                102
+            ],
+            [
+                101,
+                6721,
+                5005,
+                102
+            ],
+            [
+                101,
+                6721,
+                5005,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56f86966aef2371900626053",
+        "actual_text": [
+            "Small Catechism",
+            "Small Catechism",
+            "Small Catechism"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2235,
+                4937,
+                15937,
+                2964,
+                102
+            ],
+            [
+                101,
+                2235,
+                4937,
+                15937,
+                2964,
+                102
+            ],
+            [
+                101,
+                2235,
+                4937,
+                15937,
+                2964,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728d5793acd2414000dffb7",
+        "actual_text": [
+            "obey her conscience rather than human law",
+            "She gives a stirring speech",
+            "She gives a stirring speech in which she tells him that she must obey her conscience rather than human law",
+            "a stirring speech",
+            "She gives a stirring speech in which she tells him that she must obey her conscience rather than human law"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                15470,
+                2014,
+                13454,
+                2738,
+                2084,
+                2529,
+                2375,
+                102
+            ],
+            [
+                101,
+                2016,
+                3957,
+                1037,
+                18385,
+                4613,
+                102
+            ],
+            [
+                101,
+                2016,
+                3957,
+                1037,
+                18385,
+                4613,
+                1999,
+                2029,
+                2016,
+                4136,
+                2032,
+                2008,
+                2016,
+                2442,
+                15470,
+                2014,
+                13454,
+                2738,
+                2084,
+                2529,
+                2375,
+                102
+            ],
+            [
+                101,
+                1037,
+                18385,
+                4613,
+                102
+            ],
+            [
+                101,
+                2016,
+                3957,
+                1037,
+                18385,
+                4613,
+                1999,
+                2029,
+                2016,
+                4136,
+                2032,
+                2008,
+                2016,
+                2442,
+                15470,
+                2014,
+                13454,
+                2738,
+                2084,
+                2529,
+                2375,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572684365951b619008f7540",
+        "actual_text": [
+            "among the plankton",
+            "among the plankton",
+            "among the plankton"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2426,
+                1996,
+                24000,
+                2669,
+                102
+            ],
+            [
+                101,
+                2426,
+                1996,
+                24000,
+                2669,
+                102
+            ],
+            [
+                101,
+                2426,
+                1996,
+                24000,
+                2669,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570d26efb3d812140066d493",
+        "actual_text": [
+            "every four years",
+            "every four years",
+            "four years"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2296,
+                2176,
+                2086,
+                102
+            ],
+            [
+                101,
+                2296,
+                2176,
+                2086,
+                102
+            ],
+            [
+                101,
+                2176,
+                2086,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57378c9b1c456719005744a9",
+        "actual_text": [
+            "unified electromagnetic",
+            "unified electromagnetic force",
+            "electromagnetic",
+            "unified electromagnetic force"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10562,
+                17225,
+                102
+            ],
+            [
+                101,
+                10562,
+                17225,
+                2486,
+                102
+            ],
+            [
+                101,
+                17225,
+                102
+            ],
+            [
+                101,
+                10562,
+                17225,
+                2486,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57286bb84b864d19001649c8",
+        "actual_text": [
+            "commercial, scientific, and cultural",
+            "commercial, scientific, and cultural",
+            "commercial, scientific, and cultural"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3293,
+                1010,
+                4045,
+                1010,
+                1998,
+                3451,
+                102
+            ],
+            [
+                101,
+                3293,
+                1010,
+                4045,
+                1010,
+                1998,
+                3451,
+                102
+            ],
+            [
+                101,
+                3293,
+                1010,
+                4045,
+                1010,
+                1998,
+                3451,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727f746ff5b5019007d9960",
+        "actual_text": [
+            "Rose",
+            "Rose",
+            "Rose"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3123,
+                102
+            ],
+            [
+                101,
+                3123,
+                102
+            ],
+            [
+                101,
+                3123,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5706074552bb8914006897d6",
+        "actual_text": [
+            "five million",
+            "five million",
+            "five million"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2274,
+                2454,
+                102
+            ],
+            [
+                101,
+                2274,
+                2454,
+                102
+            ],
+            [
+                101,
+                2274,
+                2454,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728f50baf94a219006a9e57",
+        "actual_text": [
+            "lack of remorse",
+            "lack of remorse",
+            "the judge increased her sentence",
+            "statement suggested a lack of remorse"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3768,
+                1997,
+                23124,
+                102
+            ],
+            [
+                101,
+                3768,
+                1997,
+                23124,
+                102
+            ],
+            [
+                101,
+                1996,
+                3648,
+                3445,
+                2014,
+                6251,
+                102
+            ],
+            [
+                101,
+                4861,
+                4081,
+                1037,
+                3768,
+                1997,
+                23124,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57309ef18ab72b1400f9c601",
+        "actual_text": [
+            "before World War I",
+            "World War I",
+            "before World War I",
+            "before World War I",
+            "before World War I,"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2077,
+                2088,
+                2162,
+                1045,
+                102
+            ],
+            [
+                101,
+                2088,
+                2162,
+                1045,
+                102
+            ],
+            [
+                101,
+                2077,
+                2088,
+                2162,
+                1045,
+                102
+            ],
+            [
+                101,
+                2077,
+                2088,
+                2162,
+                1045,
+                102
+            ],
+            [
+                101,
+                2077,
+                2088,
+                2162,
+                1045,
+                1010,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727ec062ca10214002d99b9",
+        "actual_text": [
+            "offering a higher wage",
+            "by offering a higher wage",
+            "offering a higher wage the best of their labor"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5378,
+                1037,
+                3020,
+                11897,
+                102
+            ],
+            [
+                101,
+                2011,
+                5378,
+                1037,
+                3020,
+                11897,
+                102
+            ],
+            [
+                101,
+                5378,
+                1037,
+                3020,
+                11897,
+                1996,
+                2190,
+                1997,
+                2037,
+                4450,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d99179dc89441400fdb56d",
+        "actual_text": [
+            "four",
+            "four",
+            "four"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2176,
+                102
+            ],
+            [
+                101,
+                2176,
+                102
+            ],
+            [
+                101,
+                2176,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5711607f2419e314009555cf",
+        "actual_text": [
+            "steam turbine",
+            "steam turbine",
+            "steam turbine plant",
+            "steam turbine plant"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5492,
+                14027,
+                102
+            ],
+            [
+                101,
+                5492,
+                14027,
+                102
+            ],
+            [
+                101,
+                5492,
+                14027,
+                3269,
+                102
+            ],
+            [
+                101,
+                5492,
+                14027,
+                3269,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57266a15f1498d1400e8defa",
+        "actual_text": [
+            "devastating loss",
+            "devastating loss",
+            "devastating loss"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14886,
+                3279,
+                102
+            ],
+            [
+                101,
+                14886,
+                3279,
+                102
+            ],
+            [
+                101,
+                14886,
+                3279,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570953a7efce8f15003a7e02",
+        "actual_text": [
+            "HD channels",
+            "HD channels",
+            "HD channels"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10751,
+                6833,
+                102
+            ],
+            [
+                101,
+                10751,
+                6833,
+                102
+            ],
+            [
+                101,
+                10751,
+                6833,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e1239acd28a01900c67641",
+        "actual_text": [
+            "women",
+            "women",
+            "women"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2308,
+                102
+            ],
+            [
+                101,
+                2308,
+                102
+            ],
+            [
+                101,
+                2308,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57302efe04bcaa1900d772f9",
+        "actual_text": [
+            "terrorist groups",
+            "terrorist groups",
+            "terrorist groups"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9452,
+                2967,
+                102
+            ],
+            [
+                101,
+                9452,
+                2967,
+                102
+            ],
+            [
+                101,
+                9452,
+                2967,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726e37ef1498d1400e8eed8",
+        "actual_text": [
+            "over 14,000",
+            "over 14,000 outfits",
+            "over 14,000",
+            "over 14,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2058,
+                2403,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                2058,
+                2403,
+                1010,
+                2199,
+                22054,
+                102
+            ],
+            [
+                101,
+                2058,
+                2403,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                2058,
+                2403,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725d662ec44d21400f3d688",
+        "actual_text": [
+            "Roeding Park",
+            "Roeding Park",
+            "Roeding Park"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                20944,
+                4667,
+                2380,
+                102
+            ],
+            [
+                101,
+                20944,
+                4667,
+                2380,
+                102
+            ],
+            [
+                101,
+                20944,
+                4667,
+                2380,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57266e72f1498d1400e8df8d",
+        "actual_text": [
+            "particular closure temperature",
+            "closure temperature",
+            "closure temperature"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3327,
+                8503,
+                4860,
+                102
+            ],
+            [
+                101,
+                8503,
+                4860,
+                102
+            ],
+            [
+                101,
+                8503,
+                4860,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e74faf00c9c71400d76f95",
+        "actual_text": [
+            "allegations of professional misconduct",
+            "professional misconduct",
+            "professional misconduct"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9989,
+                1997,
+                2658,
+                23337,
+                102
+            ],
+            [
+                101,
+                2658,
+                23337,
+                102
+            ],
+            [
+                101,
+                2658,
+                23337,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729d51d3f37b31900478592",
+        "actual_text": [
+            "worker, capitalist/business owner, landlord",
+            "worker, capitalist/business owner, landlord",
+            "worker, capitalist/business owner, landlord"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7309,
+                1010,
+                19640,
+                1013,
+                2449,
+                3954,
+                1010,
+                18196,
+                102
+            ],
+            [
+                101,
+                7309,
+                1010,
+                19640,
+                1013,
+                2449,
+                3954,
+                1010,
+                18196,
+                102
+            ],
+            [
+                101,
+                7309,
+                1010,
+                19640,
+                1013,
+                2449,
+                3954,
+                1010,
+                18196,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728f2e26aef051400154898",
+        "actual_text": [
+            "Immunology",
+            "Immunology",
+            "Immunology"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10047,
+                23041,
+                6779,
+                102
+            ],
+            [
+                101,
+                10047,
+                23041,
+                6779,
+                102
+            ],
+            [
+                101,
+                10047,
+                23041,
+                6779,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729efab3f37b319004785cf",
+        "actual_text": [
+            "Dendritic cells",
+            "Dendritic cells",
+            "Dendritic cells"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7939,
+                13626,
+                18291,
+                4442,
+                102
+            ],
+            [
+                101,
+                7939,
+                13626,
+                18291,
+                4442,
+                102
+            ],
+            [
+                101,
+                7939,
+                13626,
+                18291,
+                4442,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57266783f1498d1400e8de8a",
+        "actual_text": [
+            "ruin him",
+            "ruin him",
+            "to ruin him"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10083,
+                2032,
+                102
+            ],
+            [
+                101,
+                10083,
+                2032,
+                102
+            ],
+            [
+                101,
+                2000,
+                10083,
+                2032,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e0c0c7231d4119001ac379",
+        "actual_text": [
+            "pastor",
+            "a pastor",
+            "pastor"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9220,
+                102
+            ],
+            [
+                101,
+                1037,
+                9220,
+                102
+            ],
+            [
+                101,
+                9220,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d70d240d65d21400198327",
+        "actual_text": [
+            "San Jose Marriott.",
+            "the San Jose Marriott",
+            "San Jose Marriott"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2624,
+                4560,
+                26490,
+                1012,
+                102
+            ],
+            [
+                101,
+                1996,
+                2624,
+                4560,
+                26490,
+                102
+            ],
+            [
+                101,
+                2624,
+                4560,
+                26490,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5733d3cb4776f419006612ed",
+        "actual_text": [
+            "Fourth Intercolonial War and the Great War for the Empire",
+            "Fourth Intercolonial War and the Great War for the Empire",
+            "Fourth Intercolonial War and the Great War for the Empire",
+            "Fourth Intercolonial War and the Great War for the Empire",
+            "the Fourth Intercolonial War and the Great War for the Empire"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2959,
+                6970,
+                25778,
+                12488,
+                2140,
+                2162,
+                1998,
+                1996,
+                2307,
+                2162,
+                2005,
+                1996,
+                3400,
+                102
+            ],
+            [
+                101,
+                2959,
+                6970,
+                25778,
+                12488,
+                2140,
+                2162,
+                1998,
+                1996,
+                2307,
+                2162,
+                2005,
+                1996,
+                3400,
+                102
+            ],
+            [
+                101,
+                2959,
+                6970,
+                25778,
+                12488,
+                2140,
+                2162,
+                1998,
+                1996,
+                2307,
+                2162,
+                2005,
+                1996,
+                3400,
+                102
+            ],
+            [
+                101,
+                2959,
+                6970,
+                25778,
+                12488,
+                2140,
+                2162,
+                1998,
+                1996,
+                2307,
+                2162,
+                2005,
+                1996,
+                3400,
+                102
+            ],
+            [
+                101,
+                1996,
+                2959,
+                6970,
+                25778,
+                12488,
+                2140,
+                2162,
+                1998,
+                1996,
+                2307,
+                2162,
+                2005,
+                1996,
+                3400,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5705f7c875f01819005e77df",
+        "actual_text": [
+            "highways",
+            "highways"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10292,
+                102
+            ],
+            [
+                101,
+                10292,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572680865951b619008f74e9",
+        "actual_text": [
+            "Green",
+            "Green",
+            "John and Benjamin Green"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2665,
+                102
+            ],
+            [
+                101,
+                2665,
+                102
+            ],
+            [
+                101,
+                2198,
+                1998,
+                6425,
+                2665,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725d79e89a1e219009abf90",
+        "actual_text": [
+            "unmanned",
+            "unmanned",
+            "unmanned",
+            "unmanned"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                24075,
+                102
+            ],
+            [
+                101,
+                24075,
+                102
+            ],
+            [
+                101,
+                24075,
+                102
+            ],
+            [
+                101,
+                24075,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570603c475f01819005e7884",
+        "actual_text": [
+            "10.0%",
+            "10.0%",
+            "10.0%"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2184,
+                1012,
+                1014,
+                1003,
+                102
+            ],
+            [
+                101,
+                2184,
+                1012,
+                1014,
+                1003,
+                102
+            ],
+            [
+                101,
+                2184,
+                1012,
+                1014,
+                1003,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264fe65951b619008f6fa4",
+        "actual_text": [
+            "October 2011",
+            "October 2011",
+            "October 2011"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2255,
+                2249,
+                102
+            ],
+            [
+                101,
+                2255,
+                2249,
+                102
+            ],
+            [
+                101,
+                2255,
+                2249,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d98f0ddc89441400fdb559",
+        "actual_text": [
+            "10.",
+            "10",
+            "10 times"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2184,
+                1012,
+                102
+            ],
+            [
+                101,
+                2184,
+                102
+            ],
+            [
+                101,
+                2184,
+                2335,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56de0ed14396321400ee257a",
+        "actual_text": [
+            "The Book of Roger",
+            "The Book of Roger",
+            "The Book of Roger"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                2338,
+                1997,
+                5074,
+                102
+            ],
+            [
+                101,
+                1996,
+                2338,
+                1997,
+                5074,
+                102
+            ],
+            [
+                101,
+                1996,
+                2338,
+                1997,
+                5074,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572649d8f1498d1400e8db39",
+        "actual_text": [
+            "Germany",
+            "Germany",
+            "Italy",
+            "Norway"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2762,
+                102
+            ],
+            [
+                101,
+                2762,
+                102
+            ],
+            [
+                101,
+                3304,
+                102
+            ],
+            [
+                101,
+                5120,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264684708984140094c127",
+        "actual_text": [
+            "until the 19th century",
+            "until the 19th century",
+            "19th century"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2127,
+                1996,
+                3708,
+                2301,
+                102
+            ],
+            [
+                101,
+                2127,
+                1996,
+                3708,
+                2301,
+                102
+            ],
+            [
+                101,
+                3708,
+                2301,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570953a7efce8f15003a7dff",
+        "actual_text": [
+            "basic channels",
+            "the basic channels",
+            "the basic channels"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3937,
+                6833,
+                102
+            ],
+            [
+                101,
+                1996,
+                3937,
+                6833,
+                102
+            ],
+            [
+                101,
+                1996,
+                3937,
+                6833,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56beb3a03aeaaa14008c9248",
+        "actual_text": [
+            "45",
+            "45",
+            "45"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3429,
+                102
+            ],
+            [
+                101,
+                3429,
+                102
+            ],
+            [
+                101,
+                3429,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726a299dd62a815002e8b9e",
+        "actual_text": [
+            "None",
+            "None",
+            "None"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3904,
+                102
+            ],
+            [
+                101,
+                3904,
+                102
+            ],
+            [
+                101,
+                3904,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57097051ed30961900e84134",
+        "actual_text": [
+            "Sky Active",
+            "Open",
+            "Sky Active"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3712,
+                3161,
+                102
+            ],
+            [
+                101,
+                2330,
+                102
+            ],
+            [
+                101,
+                3712,
+                3161,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5705e3f252bb89140068966c",
+        "actual_text": [
+            "12 million",
+            "over 12 million inhabitants",
+            "12 million"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2260,
+                2454,
+                102
+            ],
+            [
+                101,
+                2058,
+                2260,
+                2454,
+                4864,
+                102
+            ],
+            [
+                101,
+                2260,
+                2454,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725e1c4271a42140099d2d7",
+        "actual_text": [
+            "late 1970s",
+            "late 1970s",
+            "late 1970s"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2397,
+                3955,
+                102
+            ],
+            [
+                101,
+                2397,
+                3955,
+                102
+            ],
+            [
+                101,
+                2397,
+                3955,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57332442d058e614000b5723",
+        "actual_text": [
+            "a village",
+            "village"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1037,
+                2352,
+                102
+            ],
+            [
+                101,
+                2352,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572906e23f37b31900477f8e",
+        "actual_text": [
+            "Kenya African National Union (KANU) of Jomo Kenyatta",
+            "Kenya African National Union",
+            "Kenya African National Union"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7938,
+                3060,
+                2120,
+                2586,
+                1006,
+                22827,
+                2226,
+                1007,
+                1997,
+                8183,
+                5302,
+                7938,
+                5946,
+                102
+            ],
+            [
+                101,
+                7938,
+                3060,
+                2120,
+                2586,
+                102
+            ],
+            [
+                101,
+                7938,
+                3060,
+                2120,
+                2586,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728455bff5b5019007da078",
+        "actual_text": [
+            "NASA's CALIPSO satellite",
+            "NASA's CALIPSO satellite",
+            "satellite"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9274,
+                1005,
+                1055,
+                10250,
+                11514,
+                6499,
+                5871,
+                102
+            ],
+            [
+                101,
+                9274,
+                1005,
+                1055,
+                10250,
+                11514,
+                6499,
+                5871,
+                102
+            ],
+            [
+                101,
+                5871,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d9c79edc89441400fdb808",
+        "actual_text": [
+            "DeMarcus Ware",
+            "DeMarcus Ware",
+            "Ware"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                17183,
+                2906,
+                7874,
+                16283,
+                102
+            ],
+            [
+                101,
+                17183,
+                2906,
+                7874,
+                16283,
+                102
+            ],
+            [
+                101,
+                16283,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56f87531a6d7ea1400e17671",
+        "actual_text": [
+            "specific catechism questions",
+            "specific catechism questions",
+            "specific catechism questions"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3563,
+                4937,
+                15937,
+                2964,
+                3980,
+                102
+            ],
+            [
+                101,
+                3563,
+                4937,
+                15937,
+                2964,
+                3980,
+                102
+            ],
+            [
+                101,
+                3563,
+                4937,
+                15937,
+                2964,
+                3980,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57274e145951b619008f87ea",
+        "actual_text": [
+            "English",
+            "English",
+            "English"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2394,
+                102
+            ],
+            [
+                101,
+                2394,
+                102
+            ],
+            [
+                101,
+                2394,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572fc8a904bcaa1900d76d20",
+        "actual_text": [
+            "large-scale development projects",
+            "large-scale development projects",
+            "large-scale development projects"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2312,
+                1011,
+                4094,
+                2458,
+                3934,
+                102
+            ],
+            [
+                101,
+                2312,
+                1011,
+                4094,
+                2458,
+                3934,
+                102
+            ],
+            [
+                101,
+                2312,
+                1011,
+                4094,
+                2458,
+                3934,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56de15dbcffd8e1900b4b5ca",
+        "actual_text": [
+            "Normandy",
+            "Normandy",
+            "Normandy"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                13298,
+                102
+            ],
+            [
+                101,
+                13298,
+                102
+            ],
+            [
+                101,
+                13298,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5733f5f24776f419006615c4",
+        "actual_text": [
+            "Washington and Thomas Gage",
+            "George Washington",
+            "Washington and Thomas Gage",
+            "Washington and Thomas Gage",
+            "George Washington"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2899,
+                1998,
+                2726,
+                10012,
+                102
+            ],
+            [
+                101,
+                2577,
+                2899,
+                102
+            ],
+            [
+                101,
+                2899,
+                1998,
+                2726,
+                10012,
+                102
+            ],
+            [
+                101,
+                2899,
+                1998,
+                2726,
+                10012,
+                102
+            ],
+            [
+                101,
+                2577,
+                2899,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571098f8a58dae1900cd6ab3",
+        "actual_text": [
+            "'Bucks Point'",
+            "Bucks Point",
+            "Bucks Point"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1005,
+                14189,
+                2391,
+                1005,
+                102
+            ],
+            [
+                101,
+                14189,
+                2391,
+                102
+            ],
+            [
+                101,
+                14189,
+                2391,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57300888b2c2fd1400568776",
+        "actual_text": [
+            "threat of war",
+            "whether a state or threat of war existed",
+            "whether a state or threat of war existed"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5081,
+                1997,
+                2162,
+                102
+            ],
+            [
+                101,
+                3251,
+                1037,
+                2110,
+                2030,
+                5081,
+                1997,
+                2162,
+                5839,
+                102
+            ],
+            [
+                101,
+                3251,
+                1037,
+                2110,
+                2030,
+                5081,
+                1997,
+                2162,
+                5839,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e11a16cd28a01900c675b6",
+        "actual_text": [
+            "9:00 a.m. until 6:00 p.m. or later",
+            "9:00 a.m. until 6:00 p.m",
+            "9:00 a.m. until 6:00 p.m. or later"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1023,
+                1024,
+                4002,
+                1037,
+                1012,
+                1049,
+                1012,
+                2127,
+                1020,
+                1024,
+                4002,
+                1052,
+                1012,
+                1049,
+                1012,
+                2030,
+                2101,
+                102
+            ],
+            [
+                101,
+                1023,
+                1024,
+                4002,
+                1037,
+                1012,
+                1049,
+                1012,
+                2127,
+                1020,
+                1024,
+                4002,
+                1052,
+                1012,
+                1049,
+                102
+            ],
+            [
+                101,
+                1023,
+                1024,
+                4002,
+                1037,
+                1012,
+                1049,
+                1012,
+                2127,
+                1020,
+                1024,
+                4002,
+                1052,
+                1012,
+                1049,
+                1012,
+                2030,
+                2101,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571090abb654c5140001f996",
+        "actual_text": [
+            "The Weavers",
+            "The Weavers",
+            "The Weavers"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                14077,
+                2015,
+                102
+            ],
+            [
+                101,
+                1996,
+                14077,
+                2015,
+                102
+            ],
+            [
+                101,
+                1996,
+                14077,
+                2015,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e764e200c9c71400d77092",
+        "actual_text": [
+            "student motivation and attitudes towards school",
+            "student motivation and attitudes towards school",
+            "student motivation and attitudes towards school"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3076,
+                14354,
+                1998,
+                13818,
+                2875,
+                2082,
+                102
+            ],
+            [
+                101,
+                3076,
+                14354,
+                1998,
+                13818,
+                2875,
+                2082,
+                102
+            ],
+            [
+                101,
+                3076,
+                14354,
+                1998,
+                13818,
+                2875,
+                2082,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57269f3ef1498d1400e8e535",
+        "actual_text": [
+            "incorporations would only be nullified for a fixed list of reasons",
+            "incorporations would only be nullified for a fixed list of reasons",
+            "incorporations would only be nullified for a fixed list of reasons"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                16935,
+                2015,
+                2052,
+                2069,
+                2022,
+                19701,
+                7810,
+                2005,
+                1037,
+                4964,
+                2862,
+                1997,
+                4436,
+                102
+            ],
+            [
+                101,
+                16935,
+                2015,
+                2052,
+                2069,
+                2022,
+                19701,
+                7810,
+                2005,
+                1037,
+                4964,
+                2862,
+                1997,
+                4436,
+                102
+            ],
+            [
+                101,
+                16935,
+                2015,
+                2052,
+                2069,
+                2022,
+                19701,
+                7810,
+                2005,
+                1037,
+                4964,
+                2862,
+                1997,
+                4436,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572a03086aef0514001551a4",
+        "actual_text": [
+            "methotrexate or azathioprine",
+            "methotrexate or azathioprine",
+            "methotrexate or azathioprine"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2777,
+                12326,
+                2890,
+                18684,
+                2618,
+                2030,
+                17207,
+                25457,
+                7361,
+                11467,
+                102
+            ],
+            [
+                101,
+                2777,
+                12326,
+                2890,
+                18684,
+                2618,
+                2030,
+                17207,
+                25457,
+                7361,
+                11467,
+                102
+            ],
+            [
+                101,
+                2777,
+                12326,
+                2890,
+                18684,
+                2618,
+                2030,
+                17207,
+                25457,
+                7361,
+                11467,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57268e2bf1498d1400e8e3b0",
+        "actual_text": [
+            "common rules for coal and steel, and then atomic energy",
+            "common rules for coal and steel, and then atomic energy",
+            "with common rules for coal and steel",
+            "with common rules for coal and steel"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2691,
+                3513,
+                2005,
+                5317,
+                1998,
+                3886,
+                1010,
+                1998,
+                2059,
+                9593,
+                2943,
+                102
+            ],
+            [
+                101,
+                2691,
+                3513,
+                2005,
+                5317,
+                1998,
+                3886,
+                1010,
+                1998,
+                2059,
+                9593,
+                2943,
+                102
+            ],
+            [
+                101,
+                2007,
+                2691,
+                3513,
+                2005,
+                5317,
+                1998,
+                3886,
+                102
+            ],
+            [
+                101,
+                2007,
+                2691,
+                3513,
+                2005,
+                5317,
+                1998,
+                3886,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725be0fec44d21400f3d4a5",
+        "actual_text": [
+            "Robert R. Gilruth",
+            "Robert R. Gilruth's",
+            "Robert R. Gilruth's",
+            "Robert R. Gilruth",
+            "Robert R. Gilruth"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2728,
+                1054,
+                1012,
+                13097,
+                22134,
+                2232,
+                102
+            ],
+            [
+                101,
+                2728,
+                1054,
+                1012,
+                13097,
+                22134,
+                2232,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                2728,
+                1054,
+                1012,
+                13097,
+                22134,
+                2232,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                2728,
+                1054,
+                1012,
+                13097,
+                22134,
+                2232,
+                102
+            ],
+            [
+                101,
+                2728,
+                1054,
+                1012,
+                13097,
+                22134,
+                2232,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57274baff1498d1400e8f5de",
+        "actual_text": [
+            "Barbara Walters",
+            "Barbara Walters",
+            "Barbara Walters"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6437,
+                19097,
+                102
+            ],
+            [
+                101,
+                6437,
+                19097,
+                102
+            ],
+            [
+                101,
+                6437,
+                19097,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729e2316aef0514001550c8",
+        "actual_text": [
+            "16,000 species",
+            "16,000",
+            "16,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2385,
+                1010,
+                2199,
+                2427,
+                102
+            ],
+            [
+                101,
+                2385,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                2385,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725e748ec44d21400f3d733",
+        "actual_text": [
+            "early twentieth century homes",
+            "early twentieth century homes",
+            "early twentieth century"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2220,
+                9086,
+                2301,
+                5014,
+                102
+            ],
+            [
+                101,
+                2220,
+                9086,
+                2301,
+                5014,
+                102
+            ],
+            [
+                101,
+                2220,
+                9086,
+                2301,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d9943fdc89441400fdb578",
+        "actual_text": [
+            "Carolina Panthers",
+            "the Panthers",
+            "Carolina"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3792,
+                12915,
+                102
+            ],
+            [
+                101,
+                1996,
+                12915,
+                102
+            ],
+            [
+                101,
+                3792,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571cde695efbb31900334e18",
+        "actual_text": [
+            "carbohydrates",
+            "carbohydrates",
+            "carbohydrates",
+            "carbohydrates",
+            "carbohydrates"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2482,
+                5092,
+                10536,
+                7265,
+                4570,
+                102
+            ],
+            [
+                101,
+                2482,
+                5092,
+                10536,
+                7265,
+                4570,
+                102
+            ],
+            [
+                101,
+                2482,
+                5092,
+                10536,
+                7265,
+                4570,
+                102
+            ],
+            [
+                101,
+                2482,
+                5092,
+                10536,
+                7265,
+                4570,
+                102
+            ],
+            [
+                101,
+                2482,
+                5092,
+                10536,
+                7265,
+                4570,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572a1046af94a219006aa78d",
+        "actual_text": [
+            "evidence",
+            "evidence",
+            "prevent growth"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3350,
+                102
+            ],
+            [
+                101,
+                3350,
+                102
+            ],
+            [
+                101,
+                4652,
+                3930,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727403af1498d1400e8f526",
+        "actual_text": [
+            "Paramount Pictures",
+            "Paramount Pictures",
+            "Paramount Pictures"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                11734,
+                4620,
+                102
+            ],
+            [
+                101,
+                11734,
+                4620,
+                102
+            ],
+            [
+                101,
+                11734,
+                4620,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d70daa0d65d21400198332",
+        "actual_text": [
+            "June 4, 2014",
+            "On June 4, 2014",
+            "2014"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2238,
+                1018,
+                1010,
+                2297,
+                102
+            ],
+            [
+                101,
+                2006,
+                2238,
+                1018,
+                1010,
+                2297,
+                102
+            ],
+            [
+                101,
+                2297,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57111428b654c5140001fb01",
+        "actual_text": [
+            "Nearly 3,000",
+            "Nearly 3,000",
+            "Nearly 3,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3053,
+                1017,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                3053,
+                1017,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                3053,
+                1017,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57293d116aef051400154bca",
+        "actual_text": [
+            "non-peer-reviewed sources",
+            "non-peer-reviewed sources",
+            "non-peer-reviewed sources"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2512,
+                1011,
+                8152,
+                1011,
+                8182,
+                4216,
+                102
+            ],
+            [
+                101,
+                2512,
+                1011,
+                8152,
+                1011,
+                8182,
+                4216,
+                102
+            ],
+            [
+                101,
+                2512,
+                1011,
+                8152,
+                1011,
+                8182,
+                4216,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572687e1dd62a815002e8854",
+        "actual_text": [
+            "Newcastle Diamonds",
+            "Newcastle Diamonds",
+            "Newcastle Diamonds"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8142,
+                11719,
+                102
+            ],
+            [
+                101,
+                8142,
+                11719,
+                102
+            ],
+            [
+                101,
+                8142,
+                11719,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572821ceff5b5019007d9db3",
+        "actual_text": [
+            "Its late 1980s performance of three to five million viewers",
+            "performance of three to five million viewers was seen as poor",
+            "performance"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2049,
+                2397,
+                3865,
+                2836,
+                1997,
+                2093,
+                2000,
+                2274,
+                2454,
+                7193,
+                102
+            ],
+            [
+                101,
+                2836,
+                1997,
+                2093,
+                2000,
+                2274,
+                2454,
+                7193,
+                2001,
+                2464,
+                2004,
+                3532,
+                102
+            ],
+            [
+                101,
+                2836,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728fd9b3f37b31900477f3c",
+        "actual_text": [
+            "Mombasa",
+            "Mombasa",
+            "Mombasa"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3566,
+                22083,
+                2050,
+                102
+            ],
+            [
+                101,
+                3566,
+                22083,
+                2050,
+                102
+            ],
+            [
+                101,
+                3566,
+                22083,
+                2050,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56f7f2e0aef2371900625cb0",
+        "actual_text": [
+            "19 October 1512",
+            "19 October 1512",
+            "1512"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2539,
+                2255,
+                16528,
+                2475,
+                102
+            ],
+            [
+                101,
+                2539,
+                2255,
+                16528,
+                2475,
+                102
+            ],
+            [
+                101,
+                16528,
+                2475,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725cb33271a42140099d1de",
+        "actual_text": [
+            "Ctenophores",
+            "Ctenophores",
+            "Ctenophores"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14931,
+                16515,
+                8458,
+                16610,
+                102
+            ],
+            [
+                101,
+                14931,
+                16515,
+                8458,
+                16610,
+                102
+            ],
+            [
+                101,
+                14931,
+                16515,
+                8458,
+                16610,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572a02483f37b3190047864e",
+        "actual_text": [
+            "Niels Jerne",
+            "Niels Jerne",
+            "Niels Jerne"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9152,
+                9050,
+                15333,
+                12119,
+                102
+            ],
+            [
+                101,
+                9152,
+                9050,
+                15333,
+                12119,
+                102
+            ],
+            [
+                101,
+                9152,
+                9050,
+                15333,
+                12119,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727aeac3acd2414000de989",
+        "actual_text": [
+            "18 million volumes",
+            "18 million",
+            "over 18 million"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2324,
+                2454,
+                6702,
+                102
+            ],
+            [
+                101,
+                2324,
+                2454,
+                102
+            ],
+            [
+                101,
+                2058,
+                2324,
+                2454,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e756bc37bdd419002c3e97",
+        "actual_text": [
+            "learning",
+            "learning",
+            "learning"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4083,
+                102
+            ],
+            [
+                101,
+                4083,
+                102
+            ],
+            [
+                101,
+                4083,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570d391fb3d812140066d576",
+        "actual_text": [
+            "Great Dividing Range",
+            "the Great Dividing Range",
+            "Great Dividing Range"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2307,
+                16023,
+                2846,
+                102
+            ],
+            [
+                101,
+                1996,
+                2307,
+                16023,
+                2846,
+                102
+            ],
+            [
+                101,
+                2307,
+                16023,
+                2846,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56bf3a223aeaaa14008c9576",
+        "actual_text": [
+            "arm",
+            "arm",
+            "arm"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2849,
+                102
+            ],
+            [
+                101,
+                2849,
+                102
+            ],
+            [
+                101,
+                2849,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5737432bc3c5551400e51e99",
+        "actual_text": [
+            "Newton",
+            "Newton's",
+            "Newton's",
+            "Newton's",
+            "Newton's"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8446,
+                102
+            ],
+            [
+                101,
+                8446,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                8446,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                8446,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                8446,
+                1005,
+                1055,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264cac708984140094c1b7",
+        "actual_text": [
+            "rationing",
+            "rationing",
+            "rationing",
+            "rationing",
+            "rationing"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6463,
+                5582,
+                102
+            ],
+            [
+                101,
+                6463,
+                5582,
+                102
+            ],
+            [
+                101,
+                6463,
+                5582,
+                102
+            ],
+            [
+                101,
+                6463,
+                5582,
+                102
+            ],
+            [
+                101,
+                6463,
+                5582,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264991f1498d1400e8db31",
+        "actual_text": [
+            "The city's residents fled to the north",
+            "the north",
+            "north"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                2103,
+                1005,
+                1055,
+                3901,
+                6783,
+                2000,
+                1996,
+                2167,
+                102
+            ],
+            [
+                101,
+                1996,
+                2167,
+                102
+            ],
+            [
+                101,
+                2167,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725b64d89a1e219009abd43",
+        "actual_text": [
+            "Five",
+            "six",
+            "Five",
+            "Five",
+            "Five of the remaining six missions"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2274,
+                102
+            ],
+            [
+                101,
+                2416,
+                102
+            ],
+            [
+                101,
+                2274,
+                102
+            ],
+            [
+                101,
+                2274,
+                102
+            ],
+            [
+                101,
+                2274,
+                1997,
+                1996,
+                3588,
+                2416,
+                6416,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e756bc37bdd419002c3e98",
+        "actual_text": [
+            "harmoniously",
+            "in sync",
+            "harmoniously"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                25546,
+                19426,
+                102
+            ],
+            [
+                101,
+                1999,
+                26351,
+                102
+            ],
+            [
+                101,
+                25546,
+                19426,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727f44c2ca10214002d9a33",
+        "actual_text": [
+            "The Daleks (a.k.a. The Mutants)",
+            "Daleks",
+            "eponymous aliens"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                8512,
+                5705,
+                1006,
+                1037,
+                1012,
+                1047,
+                1012,
+                1037,
+                1012,
+                1996,
+                23892,
+                1007,
+                102
+            ],
+            [
+                101,
+                8512,
+                5705,
+                102
+            ],
+            [
+                101,
+                15248,
+                12114,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "573098f38ab72b1400f9c5d5",
+        "actual_text": [
+            "the Mughal state",
+            "Mughal state",
+            "Mughal state",
+            "Mughal state",
+            "Mughal state"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                17877,
+                2110,
+                102
+            ],
+            [
+                101,
+                17877,
+                2110,
+                102
+            ],
+            [
+                101,
+                17877,
+                2110,
+                102
+            ],
+            [
+                101,
+                17877,
+                2110,
+                102
+            ],
+            [
+                101,
+                17877,
+                2110,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728501aff5b5019007da166",
+        "actual_text": [
+            "a board of trustees",
+            "board of trustees",
+            "The Board of Trustees"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1037,
+                2604,
+                1997,
+                9360,
+                102
+            ],
+            [
+                101,
+                2604,
+                1997,
+                9360,
+                102
+            ],
+            [
+                101,
+                1996,
+                2604,
+                1997,
+                9360,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729f9953f37b3190047861f",
+        "actual_text": [
+            "immunomodulators",
+            "immunomodulators",
+            "immunomodulators"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                10047,
+                23041,
+                19506,
+                8566,
+                20051,
+                5668,
+                102
+            ],
+            [
+                101,
+                10047,
+                23041,
+                19506,
+                8566,
+                20051,
+                5668,
+                102
+            ],
+            [
+                101,
+                10047,
+                23041,
+                19506,
+                8566,
+                20051,
+                5668,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d98fbfdc89441400fdb564",
+        "actual_text": [
+            "$1.2 billion",
+            "$1.2 billion",
+            "$1.2 billion"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1002,
+                1015,
+                1012,
+                1016,
+                4551,
+                102
+            ],
+            [
+                101,
+                1002,
+                1015,
+                1012,
+                1016,
+                4551,
+                102
+            ],
+            [
+                101,
+                1002,
+                1015,
+                1012,
+                1016,
+                4551,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56be54bdacb8001400a50323",
+        "actual_text": [
+            "10",
+            "10",
+            "10"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2184,
+                102
+            ],
+            [
+                101,
+                2184,
+                102
+            ],
+            [
+                101,
+                2184,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57292449af94a219006aa0e0",
+        "actual_text": [
+            "around 300,000",
+            "300,000",
+            "300,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2105,
+                3998,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                3998,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                3998,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730042804bcaa1900d77014",
+        "actual_text": [
+            "8,000 years ago",
+            "~8,000 years ago",
+            "~8,000 years ago"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1022,
+                1010,
+                2199,
+                2086,
+                3283,
+                102
+            ],
+            [
+                101,
+                1066,
+                1022,
+                1010,
+                2199,
+                2086,
+                3283,
+                102
+            ],
+            [
+                101,
+                1066,
+                1022,
+                1010,
+                2199,
+                2086,
+                3283,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57269698dd62a815002e8a6d",
+        "actual_text": [
+            "Newcastle University",
+            "Newcastle University",
+            "Newcastle University"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8142,
+                2118,
+                102
+            ],
+            [
+                101,
+                8142,
+                2118,
+                102
+            ],
+            [
+                101,
+                8142,
+                2118,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572976791d046914007794b2",
+        "actual_text": [
+            "up to half the carbon fixed by the Calvin cycle",
+            "up to half",
+            "half"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2039,
+                2000,
+                2431,
+                1996,
+                6351,
+                4964,
+                2011,
+                1996,
+                11130,
+                5402,
+                102
+            ],
+            [
+                101,
+                2039,
+                2000,
+                2431,
+                102
+            ],
+            [
+                101,
+                2431,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5733ea04d058e614000b6596",
+        "actual_text": [
+            "Fort Le Boeuf (present-day Waterford, Pennsylvania",
+            "Fort Le Boeuf",
+            "present-day Waterford, Pennsylvania",
+            "Fort Le Boeuf",
+            "present-day Waterford, Pennsylvania"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3481,
+                3393,
+                8945,
+                13765,
+                2546,
+                1006,
+                2556,
+                1011,
+                2154,
+                17769,
+                1010,
+                3552,
+                102
+            ],
+            [
+                101,
+                3481,
+                3393,
+                8945,
+                13765,
+                2546,
+                102
+            ],
+            [
+                101,
+                2556,
+                1011,
+                2154,
+                17769,
+                1010,
+                3552,
+                102
+            ],
+            [
+                101,
+                3481,
+                3393,
+                8945,
+                13765,
+                2546,
+                102
+            ],
+            [
+                101,
+                2556,
+                1011,
+                2154,
+                17769,
+                1010,
+                3552,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5733a1854776f41900660f0a",
+        "actual_text": [
+            "Warsaw Uprising Museum",
+            "Warsaw Uprising Museum",
+            "Warsaw Uprising Museum"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8199,
+                10138,
+                2688,
+                102
+            ],
+            [
+                101,
+                8199,
+                10138,
+                2688,
+                102
+            ],
+            [
+                101,
+                8199,
+                10138,
+                2688,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56bec2013aeaaa14008c9372",
+        "actual_text": [
+            "WatchESPN",
+            "WatchESPN",
+            "WatchESPN"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                12197,
+                2361,
+                2078,
+                102
+            ],
+            [
+                101,
+                12197,
+                2361,
+                2078,
+                102
+            ],
+            [
+                101,
+                12197,
+                2361,
+                2078,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5710968aa58dae1900cd6a89",
+        "actual_text": [
+            "surnames",
+            "names",
+            "surnames"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                11988,
+                2015,
+                102
+            ],
+            [
+                101,
+                3415,
+                102
+            ],
+            [
+                101,
+                11988,
+                2015,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56de1563cffd8e1900b4b5c3",
+        "actual_text": [
+            "Dyrrachium",
+            "Dyrrachium",
+            "Dyrrachium"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1040,
+                12541,
+                22648,
+                4048,
+                2819,
+                102
+            ],
+            [
+                101,
+                1040,
+                12541,
+                22648,
+                4048,
+                2819,
+                102
+            ],
+            [
+                101,
+                1040,
+                12541,
+                22648,
+                4048,
+                2819,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e089ab231d4119001ac287",
+        "actual_text": [
+            "$216,000",
+            "$216,000",
+            "a lump sum payment of $216,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1002,
+                20294,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                1002,
+                20294,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                1037,
+                15116,
+                7680,
+                7909,
+                1997,
+                1002,
+                20294,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727e9523acd2414000def99",
+        "actual_text": [
+            "marginal value added of each economic actor",
+            "differences in value",
+            "marginal value added of each economic actor"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14785,
+                3643,
+                2794,
+                1997,
+                2169,
+                3171,
+                3364,
+                102
+            ],
+            [
+                101,
+                5966,
+                1999,
+                3643,
+                102
+            ],
+            [
+                101,
+                14785,
+                3643,
+                2794,
+                1997,
+                2169,
+                3171,
+                3364,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57291fb4af94a219006aa0b5",
+        "actual_text": [
+            "environmental and social problems",
+            "environmental and social problems",
+            "environmental and social problems"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4483,
+                1998,
+                2591,
+                3471,
+                102
+            ],
+            [
+                101,
+                4483,
+                1998,
+                2591,
+                3471,
+                102
+            ],
+            [
+                101,
+                4483,
+                1998,
+                2591,
+                3471,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5711619950c2381900b54ab0",
+        "actual_text": [
+            "condenser",
+            "a separate condenser",
+            "condenser",
+            "a separate condenser"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                24707,
+                12325,
+                2099,
+                102
+            ],
+            [
+                101,
+                1037,
+                3584,
+                24707,
+                12325,
+                2099,
+                102
+            ],
+            [
+                101,
+                24707,
+                12325,
+                2099,
+                102
+            ],
+            [
+                101,
+                1037,
+                3584,
+                24707,
+                12325,
+                2099,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572978e66aef051400154f78",
+        "actual_text": [
+            "bright white light",
+            "white light",
+            "bright white light"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4408,
+                2317,
+                2422,
+                102
+            ],
+            [
+                101,
+                2317,
+                2422,
+                102
+            ],
+            [
+                101,
+                4408,
+                2317,
+                2422,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57276576dd62a815002e9c18",
+        "actual_text": [
+            "New Jersey, Rhode Island and Delaware",
+            "New Jersey, Rhode Island and Delaware",
+            "New Jersey, Rhode Island and Delaware"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2047,
+                3933,
+                1010,
+                9763,
+                2479,
+                1998,
+                8452,
+                102
+            ],
+            [
+                101,
+                2047,
+                3933,
+                1010,
+                9763,
+                2479,
+                1998,
+                8452,
+                102
+            ],
+            [
+                101,
+                2047,
+                3933,
+                1010,
+                9763,
+                2479,
+                1998,
+                8452,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5710f4b8b654c5140001fa46",
+        "actual_text": [
+            "Count Ludwig von Nassau-Saarbr\u00fccken",
+            "Ludwig von Nassau-Saarbr\u00fccken",
+            "Count Ludwig von Nassau-Saarbr\u00fccken"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4175,
+                10302,
+                3854,
+                14646,
+                1011,
+                7842,
+                2906,
+                28985,
+                2368,
+                102
+            ],
+            [
+                101,
+                10302,
+                3854,
+                14646,
+                1011,
+                7842,
+                2906,
+                28985,
+                2368,
+                102
+            ],
+            [
+                101,
+                4175,
+                10302,
+                3854,
+                14646,
+                1011,
+                7842,
+                2906,
+                28985,
+                2368,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725e36f89a1e219009ac038",
+        "actual_text": [
+            "Gemini",
+            "all-Gemini veteran",
+            "Gemini",
+            "all-Gemini veteran crew",
+            "Gemini"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                21424,
+                102
+            ],
+            [
+                101,
+                2035,
+                1011,
+                21424,
+                8003,
+                102
+            ],
+            [
+                101,
+                21424,
+                102
+            ],
+            [
+                101,
+                2035,
+                1011,
+                21424,
+                8003,
+                3626,
+                102
+            ],
+            [
+                101,
+                21424,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728804b4b864d1900164a47",
+        "actual_text": [
+            "1314",
+            "1314",
+            "1314"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14677,
+                2549,
+                102
+            ],
+            [
+                101,
+                14677,
+                2549,
+                102
+            ],
+            [
+                101,
+                14677,
+                2549,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728ec6a4b864d19001650ab",
+        "actual_text": [
+            "tempted to enter the test site",
+            "protesters attempted to enter the test site",
+            "attempted to enter the test site",
+            "13 of the protesters attempted to enter the test site",
+            "protest"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                16312,
+                2000,
+                4607,
+                1996,
+                3231,
+                2609,
+                102
+            ],
+            [
+                101,
+                13337,
+                4692,
+                2000,
+                4607,
+                1996,
+                3231,
+                2609,
+                102
+            ],
+            [
+                101,
+                4692,
+                2000,
+                4607,
+                1996,
+                3231,
+                2609,
+                102
+            ],
+            [
+                101,
+                2410,
+                1997,
+                1996,
+                13337,
+                4692,
+                2000,
+                4607,
+                1996,
+                3231,
+                2609,
+                102
+            ],
+            [
+                101,
+                6186,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57114b1a2419e31400955576",
+        "actual_text": [
+            "trunnion",
+            "trunnion",
+            "trunnion"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                19817,
+                4609,
+                27678,
+                2078,
+                102
+            ],
+            [
+                101,
+                19817,
+                4609,
+                27678,
+                2078,
+                102
+            ],
+            [
+                101,
+                19817,
+                4609,
+                27678,
+                2078,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d7277c0d65d21400198401",
+        "actual_text": [
+            "Chicago Bears",
+            "the Chicago Bears",
+            "Bears"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3190,
+                6468,
+                102
+            ],
+            [
+                101,
+                1996,
+                3190,
+                6468,
+                102
+            ],
+            [
+                101,
+                6468,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727490bdd62a815002e9a82",
+        "actual_text": [
+            "expulsion",
+            "expulsion",
+            "offer a higher quality of education"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                18272,
+                102
+            ],
+            [
+                101,
+                18272,
+                102
+            ],
+            [
+                101,
+                3749,
+                1037,
+                3020,
+                3737,
+                1997,
+                2495,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727ed2e3acd2414000df001",
+        "actual_text": [
+            "Competition amongst workers",
+            "high demand",
+            "competition between employers for employees"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2971,
+                5921,
+                3667,
+                102
+            ],
+            [
+                101,
+                2152,
+                5157,
+                102
+            ],
+            [
+                101,
+                2971,
+                2090,
+                12433,
+                2005,
+                5126,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572883153acd2414000dfa70",
+        "actual_text": [
+            "traditional Chinese autocratic-bureaucratic system",
+            "autocratic-bureaucratic",
+            "autocratic-bureaucratic system"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3151,
+                2822,
+                8285,
+                17510,
+                1011,
+                4879,
+                17510,
+                2291,
+                102
+            ],
+            [
+                101,
+                8285,
+                17510,
+                1011,
+                4879,
+                17510,
+                102
+            ],
+            [
+                101,
+                8285,
+                17510,
+                1011,
+                4879,
+                17510,
+                2291,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727d6154b864d1900163e34",
+        "actual_text": [
+            "$38,000",
+            "$38,000",
+            "$38,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1002,
+                4229,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                1002,
+                4229,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                1002,
+                4229,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729f2646aef051400155132",
+        "actual_text": [
+            "90,790 tonnes",
+            "about 90,790",
+            "about 90,790",
+            "90,790 tonnes"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3938,
+                1010,
+                6535,
+                2692,
+                11000,
+                102
+            ],
+            [
+                101,
+                2055,
+                3938,
+                1010,
+                6535,
+                2692,
+                102
+            ],
+            [
+                101,
+                2055,
+                3938,
+                1010,
+                6535,
+                2692,
+                102
+            ],
+            [
+                101,
+                3938,
+                1010,
+                6535,
+                2692,
+                11000,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572a0c541d046914007796f5",
+        "actual_text": [
+            "2001",
+            "2001",
+            "2001"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2541,
+                102
+            ],
+            [
+                101,
+                2541,
+                102
+            ],
+            [
+                101,
+                2541,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571127a5a58dae1900cd6cc5",
+        "actual_text": [
+            "21 February 1804",
+            "21 February 1804",
+            "21 February 1804"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2538,
+                2337,
+                13140,
+                102
+            ],
+            [
+                101,
+                2538,
+                2337,
+                13140,
+                102
+            ],
+            [
+                101,
+                2538,
+                2337,
+                13140,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728827b2ca10214002da42c",
+        "actual_text": [
+            "1275",
+            "1275",
+            "1275"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                13029,
+                2629,
+                102
+            ],
+            [
+                101,
+                13029,
+                2629,
+                102
+            ],
+            [
+                101,
+                13029,
+                2629,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e75f5500c9c71400d7703e",
+        "actual_text": [
+            "motivated students",
+            "motivated students",
+            "motivated students"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                12774,
+                2493,
+                102
+            ],
+            [
+                101,
+                12774,
+                2493,
+                102
+            ],
+            [
+                101,
+                12774,
+                2493,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d721af0d65d2140019839e",
+        "actual_text": [
+            "The Pok\u00e9mon Company",
+            "The Pok\u00e9mon Company",
+            "The Pok\u00e9mon Company"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                20421,
+                2194,
+                102
+            ],
+            [
+                101,
+                1996,
+                20421,
+                2194,
+                102
+            ],
+            [
+                101,
+                1996,
+                20421,
+                2194,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726c002708984140094d073",
+        "actual_text": [
+            "the Treaty on the Functioning of the European Union",
+            "the Treaty on the Functioning of the European Union",
+            "the Treaty on the Functioning of the European Union"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                5036,
+                2006,
+                1996,
+                12285,
+                1997,
+                1996,
+                2647,
+                2586,
+                102
+            ],
+            [
+                101,
+                1996,
+                5036,
+                2006,
+                1996,
+                12285,
+                1997,
+                1996,
+                2647,
+                2586,
+                102
+            ],
+            [
+                101,
+                1996,
+                5036,
+                2006,
+                1996,
+                12285,
+                1997,
+                1996,
+                2647,
+                2586,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57280f974b864d1900164371",
+        "actual_text": [
+            "citizen's",
+            "head of government",
+            "private citizen",
+            "private citizen",
+            "private"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6926,
+                1005,
+                1055,
+                102
+            ],
+            [
+                101,
+                2132,
+                1997,
+                2231,
+                102
+            ],
+            [
+                101,
+                2797,
+                6926,
+                102
+            ],
+            [
+                101,
+                2797,
+                6926,
+                102
+            ],
+            [
+                101,
+                2797,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571ccd9b5efbb31900334dfa",
+        "actual_text": [
+            "nitrogen",
+            "nitrogen",
+            "nitrogen",
+            "nitrogen",
+            "nitrogen"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14114,
+                102
+            ],
+            [
+                101,
+                14114,
+                102
+            ],
+            [
+                101,
+                14114,
+                102
+            ],
+            [
+                101,
+                14114,
+                102
+            ],
+            [
+                101,
+                14114,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "571bb2269499d21900609caa",
+        "actual_text": [
+            "Oxygen",
+            "Oxygen",
+            "Oxygen",
+            "Oxygen",
+            "Oxygen"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7722,
+                102
+            ],
+            [
+                101,
+                7722,
+                102
+            ],
+            [
+                101,
+                7722,
+                102
+            ],
+            [
+                101,
+                7722,
+                102
+            ],
+            [
+                101,
+                7722,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57297103af94a219006aa425",
+        "actual_text": [
+            "their bright colors sometimes override the chlorophyll green",
+            "override the chlorophyll green",
+            "override the chlorophyll green"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2037,
+                4408,
+                6087,
+                2823,
+                2058,
+                15637,
+                1996,
+                10381,
+                10626,
+                7361,
+                29598,
+                2140,
+                2665,
+                102
+            ],
+            [
+                101,
+                2058,
+                15637,
+                1996,
+                10381,
+                10626,
+                7361,
+                29598,
+                2140,
+                2665,
+                102
+            ],
+            [
+                101,
+                2058,
+                15637,
+                1996,
+                10381,
+                10626,
+                7361,
+                29598,
+                2140,
+                2665,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729779b6aef051400154f66",
+        "actual_text": [
+            "Gymnosperms",
+            "Gymnosperms",
+            "Gymnosperms"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                9726,
+                15460,
+                4842,
+                5244,
+                102
+            ],
+            [
+                101,
+                9726,
+                15460,
+                4842,
+                5244,
+                102
+            ],
+            [
+                101,
+                9726,
+                15460,
+                4842,
+                5244,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e10fbacd28a01900c6750a",
+        "actual_text": [
+            "Nikola Tesla Museum archive",
+            "the Nikola Tesla Museum archive",
+            "Nikola Tesla Museum"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                24794,
+                26060,
+                2688,
+                8756,
+                102
+            ],
+            [
+                101,
+                1996,
+                24794,
+                26060,
+                2688,
+                8756,
+                102
+            ],
+            [
+                101,
+                24794,
+                26060,
+                2688,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57096e1ced30961900e84105",
+        "actual_text": [
+            "BBC",
+            "The BBC",
+            "BBC"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4035,
+                102
+            ],
+            [
+                101,
+                1996,
+                4035,
+                102
+            ],
+            [
+                101,
+                4035,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572f5533a23a5019007fc55b",
+        "actual_text": [
+            "Swiss canton",
+            "s in the Swiss canton of Graub\u00fcnden in the southeastern Swiss Alps,",
+            "Graub\u00fcnden",
+            "Graub\u00fcnden"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5364,
+                8770,
+                102
+            ],
+            [
+                101,
+                1055,
+                1999,
+                1996,
+                5364,
+                8770,
+                1997,
+                24665,
+                4887,
+                27265,
+                2368,
+                1999,
+                1996,
+                8252,
+                5364,
+                13698,
+                1010,
+                102
+            ],
+            [
+                101,
+                24665,
+                4887,
+                27265,
+                2368,
+                102
+            ],
+            [
+                101,
+                24665,
+                4887,
+                27265,
+                2368,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57276d7f708984140094dd3f",
+        "actual_text": [
+            "Youngstown",
+            "WKST-TV in Youngstown",
+            "Youngstown"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2402,
+                13731,
+                102
+            ],
+            [
+                101,
+                1059,
+                5705,
+                2102,
+                1011,
+                2694,
+                1999,
+                2402,
+                13731,
+                102
+            ],
+            [
+                101,
+                2402,
+                13731,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729046aaf94a219006a9f4e",
+        "actual_text": [
+            "the subsequent interrogation led to a better understanding of the Mau Mau command structure",
+            "better understanding of the Mau Mau command structure",
+            "a better understanding of the Mau Mau command structure"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                4745,
+                16871,
+                2419,
+                2000,
+                1037,
+                2488,
+                4824,
+                1997,
+                1996,
+                5003,
+                2226,
+                5003,
+                2226,
+                3094,
+                3252,
+                102
+            ],
+            [
+                101,
+                2488,
+                4824,
+                1997,
+                1996,
+                5003,
+                2226,
+                5003,
+                2226,
+                3094,
+                3252,
+                102
+            ],
+            [
+                101,
+                1037,
+                2488,
+                4824,
+                1997,
+                1996,
+                5003,
+                2226,
+                5003,
+                2226,
+                3094,
+                3252,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725d662ec44d21400f3d687",
+        "actual_text": [
+            "three",
+            "three",
+            "three"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2093,
+                102
+            ],
+            [
+                101,
+                2093,
+                102
+            ],
+            [
+                101,
+                2093,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57300137b2c2fd1400568717",
+        "actual_text": [
+            "Sayyid Abul Ala Maududi",
+            "Sayyid Abul Ala Maududi",
+            "Sayyid Abul Ala Maududi"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2360,
+                10139,
+                2094,
+                8273,
+                2140,
+                21862,
+                21696,
+                21041,
+                102
+            ],
+            [
+                101,
+                2360,
+                10139,
+                2094,
+                8273,
+                2140,
+                21862,
+                21696,
+                21041,
+                102
+            ],
+            [
+                101,
+                2360,
+                10139,
+                2094,
+                8273,
+                2140,
+                21862,
+                21696,
+                21041,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730c8a1f6cb411900e2449f",
+        "actual_text": [
+            "for the George W. Bush Presidential Library",
+            "the George W. Bush Presidential Library",
+            "the George W. Bush Presidential Library"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2005,
+                1996,
+                2577,
+                1059,
+                1012,
+                5747,
+                4883,
+                3075,
+                102
+            ],
+            [
+                101,
+                1996,
+                2577,
+                1059,
+                1012,
+                5747,
+                4883,
+                3075,
+                102
+            ],
+            [
+                101,
+                1996,
+                2577,
+                1059,
+                1012,
+                5747,
+                4883,
+                3075,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57097051ed30961900e84135",
+        "actual_text": [
+            "ONdigital",
+            "ONdigital",
+            "ONdigital"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2006,
+                4305,
+                23806,
+                2389,
+                102
+            ],
+            [
+                101,
+                2006,
+                4305,
+                23806,
+                2389,
+                102
+            ],
+            [
+                101,
+                2006,
+                4305,
+                23806,
+                2389,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730ec85e6313a140071cabb",
+        "actual_text": [
+            "World Methodist Council",
+            "World Methodist Council",
+            "World Methodist Council"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2088,
+                8938,
+                2473,
+                102
+            ],
+            [
+                101,
+                2088,
+                8938,
+                2473,
+                102
+            ],
+            [
+                101,
+                2088,
+                8938,
+                2473,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56beb7953aeaaa14008c92ad",
+        "actual_text": [
+            "New England Patriots",
+            "New England Patriots",
+            "Patriots"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2047,
+                2563,
+                11579,
+                102
+            ],
+            [
+                101,
+                2047,
+                2563,
+                11579,
+                102
+            ],
+            [
+                101,
+                11579,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57265642f1498d1400e8dc68",
+        "actual_text": [
+            "40,000",
+            "40,000",
+            "40,000"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2871,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                2871,
+                1010,
+                2199,
+                102
+            ],
+            [
+                101,
+                2871,
+                1010,
+                2199,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57096c95200fba1400367fbf",
+        "actual_text": [
+            "Sky",
+            "Sky",
+            "Sky service"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3712,
+                102
+            ],
+            [
+                101,
+                3712,
+                102
+            ],
+            [
+                101,
+                3712,
+                2326,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57277373dd62a815002e9d25",
+        "actual_text": [
+            "$3.5 billion",
+            "$3.5 billion and $118 for each of ABC's shares as well as a guarantee of 10% (or $3) for a total of $121 per share",
+            "$3.5 billion"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1002,
+                1017,
+                1012,
+                1019,
+                4551,
+                102
+            ],
+            [
+                101,
+                1002,
+                1017,
+                1012,
+                1019,
+                4551,
+                1998,
+                1002,
+                12963,
+                2005,
+                2169,
+                1997,
+                5925,
+                1005,
+                1055,
+                6661,
+                2004,
+                2092,
+                2004,
+                1037,
+                11302,
+                1997,
+                2184,
+                1003,
+                1006,
+                2030,
+                1002,
+                1017,
+                1007,
+                2005,
+                1037,
+                2561,
+                1997,
+                1002,
+                12606,
+                2566,
+                3745,
+                102
+            ],
+            [
+                101,
+                1002,
+                1017,
+                1012,
+                1019,
+                4551,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57264586f1498d1400e8dac8",
+        "actual_text": [
+            "public PAD service Telepad (using the DNIC 2049",
+            "the public PAD service Telepad",
+            "public PAD service Telepad"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2270,
+                11687,
+                2326,
+                10093,
+                13699,
+                4215,
+                1006,
+                2478,
+                1996,
+                1040,
+                8713,
+                19627,
+                2683,
+                102
+            ],
+            [
+                101,
+                1996,
+                2270,
+                11687,
+                2326,
+                10093,
+                13699,
+                4215,
+                102
+            ],
+            [
+                101,
+                2270,
+                11687,
+                2326,
+                10093,
+                13699,
+                4215,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572699db5951b619008f7799",
+        "actual_text": [
+            "EU law",
+            "EU law",
+            "EU law",
+            "EU law"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7327,
+                2375,
+                102
+            ],
+            [
+                101,
+                7327,
+                2375,
+                102
+            ],
+            [
+                101,
+                7327,
+                2375,
+                102
+            ],
+            [
+                101,
+                7327,
+                2375,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572fc80b04bcaa1900d76d14",
+        "actual_text": [
+            "Session",
+            "Session",
+            "Session"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5219,
+                102
+            ],
+            [
+                101,
+                5219,
+                102
+            ],
+            [
+                101,
+                5219,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56beaa4a3aeaaa14008c91c3",
+        "actual_text": [
+            "New England Patriots",
+            "the New England Patriots",
+            "New England Patriots"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2047,
+                2563,
+                11579,
+                102
+            ],
+            [
+                101,
+                1996,
+                2047,
+                2563,
+                11579,
+                102
+            ],
+            [
+                101,
+                2047,
+                2563,
+                11579,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57300f8504bcaa1900d770d4",
+        "actual_text": [
+            "Saudi",
+            "Saudi",
+            "Saudi"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                8174,
+                102
+            ],
+            [
+                101,
+                8174,
+                102
+            ],
+            [
+                101,
+                8174,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d602631c85041400946ed8",
+        "actual_text": [
+            "CBS",
+            "CBS",
+            "CBS"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6568,
+                102
+            ],
+            [
+                101,
+                6568,
+                102
+            ],
+            [
+                101,
+                6568,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5729f799af94a219006aa70a",
+        "actual_text": [
+            "specific pathogen",
+            "pathogen",
+            "each specific pathogen"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3563,
+                26835,
+                102
+            ],
+            [
+                101,
+                26835,
+                102
+            ],
+            [
+                101,
+                2169,
+                3563,
+                26835,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730bf03069b5314008322eb",
+        "actual_text": [
+            "IVF",
+            "created for IVF that remain after the procreative efforts have ceased,",
+            "research"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4921,
+                2546,
+                102
+            ],
+            [
+                101,
+                2580,
+                2005,
+                4921,
+                2546,
+                2008,
+                3961,
+                2044,
+                1996,
+                4013,
+                16748,
+                8082,
+                4073,
+                2031,
+                7024,
+                1010,
+                102
+            ],
+            [
+                101,
+                2470,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725c123271a42140099d132",
+        "actual_text": [
+            "July 23, 1963",
+            "1963",
+            "July 23, 1963",
+            "July 23, 1963",
+            "July 23, 1963,"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2251,
+                2603,
+                1010,
+                3699,
+                102
+            ],
+            [
+                101,
+                3699,
+                102
+            ],
+            [
+                101,
+                2251,
+                2603,
+                1010,
+                3699,
+                102
+            ],
+            [
+                101,
+                2251,
+                2603,
+                1010,
+                3699,
+                102
+            ],
+            [
+                101,
+                2251,
+                2603,
+                1010,
+                3699,
+                1010,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728284e3acd2414000df5d1",
+        "actual_text": [
+            "1978",
+            "1978",
+            "1978",
+            "1978",
+            "1978"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3301,
+                102
+            ],
+            [
+                101,
+                3301,
+                102
+            ],
+            [
+                101,
+                3301,
+                102
+            ],
+            [
+                101,
+                3301,
+                102
+            ],
+            [
+                101,
+                3301,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5728683b3acd2414000df9b2",
+        "actual_text": [
+            "Kuviasungnerk/Kangeiko",
+            "Kuviasungnerk/Kangeiko",
+            "Kuviasungnerk/Kangeiko"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                13970,
+                9035,
+                19729,
+                10177,
+                8024,
+                1013,
+                16073,
+                7416,
+                3683,
+                102
+            ],
+            [
+                101,
+                13970,
+                9035,
+                19729,
+                10177,
+                8024,
+                1013,
+                16073,
+                7416,
+                3683,
+                102
+            ],
+            [
+                101,
+                13970,
+                9035,
+                19729,
+                10177,
+                8024,
+                1013,
+                16073,
+                7416,
+                3683,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56f86d30a6d7ea1400e17606",
+        "actual_text": [
+            "northern and southern",
+            "northern and southern",
+            "both northern and southern Germans"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2642,
+                1998,
+                2670,
+                102
+            ],
+            [
+                101,
+                2642,
+                1998,
+                2670,
+                102
+            ],
+            [
+                101,
+                2119,
+                2642,
+                1998,
+                2670,
+                7074,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572a0ce11d046914007796ff",
+        "actual_text": [
+            "Plasmodium falciparum",
+            "Plasmodium falciparum",
+            "Plasmodium falciparum"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                20228,
+                3022,
+                5302,
+                12811,
+                6904,
+                15472,
+                11514,
+                15728,
+                2213,
+                102
+            ],
+            [
+                101,
+                20228,
+                3022,
+                5302,
+                12811,
+                6904,
+                15472,
+                11514,
+                15728,
+                2213,
+                102
+            ],
+            [
+                101,
+                20228,
+                3022,
+                5302,
+                12811,
+                6904,
+                15472,
+                11514,
+                15728,
+                2213,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56dfa7887aa994140058dfad",
+        "actual_text": [
+            "nervous breakdown",
+            "nervous breakdown",
+            "nervous breakdown"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                6091,
+                12554,
+                102
+            ],
+            [
+                101,
+                6091,
+                12554,
+                102
+            ],
+            [
+                101,
+                6091,
+                12554,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726f36cdd62a815002e9601",
+        "actual_text": [
+            "novel medications that need to be properly stored, administered, carefully monitored, and clinically managed",
+            "novel medications",
+            "novel medications that need to be properly stored, administered, carefully monitored, and clinically managed"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3117,
+                20992,
+                2008,
+                2342,
+                2000,
+                2022,
+                7919,
+                8250,
+                1010,
+                8564,
+                1010,
+                5362,
+                17785,
+                1010,
+                1998,
+                6612,
+                2135,
+                3266,
+                102
+            ],
+            [
+                101,
+                3117,
+                20992,
+                102
+            ],
+            [
+                101,
+                3117,
+                20992,
+                2008,
+                2342,
+                2000,
+                2022,
+                7919,
+                8250,
+                1010,
+                8564,
+                1010,
+                5362,
+                17785,
+                1010,
+                1998,
+                6612,
+                2135,
+                3266,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730d6fcb7151e1900c01562",
+        "actual_text": [
+            "Licensed Local Pastor",
+            "'Licensed Local Pastor",
+            "'Licensed Local Pastor"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7000,
+                2334,
+                9220,
+                102
+            ],
+            [
+                101,
+                1005,
+                7000,
+                2334,
+                9220,
+                102
+            ],
+            [
+                101,
+                1005,
+                7000,
+                2334,
+                9220,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e11cedcd28a01900c675e9",
+        "actual_text": [
+            "picture thinking",
+            "picture thinking"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                3861,
+                3241,
+                102
+            ],
+            [
+                101,
+                3861,
+                3241,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572974923f37b3190047840c",
+        "actual_text": [
+            "photosynthesis",
+            "photosynthesis",
+            "photosynthesis"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7760,
+                6038,
+                25078,
+                102
+            ],
+            [
+                101,
+                7760,
+                6038,
+                25078,
+                102
+            ],
+            [
+                101,
+                7760,
+                6038,
+                25078,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572925491d046914007790c5",
+        "actual_text": [
+            "diseases like malaria, HIV/AIDS, pneumonia, diarrhoea and malnutrition",
+            "Preventable diseases like malaria, HIV/AIDS, pneumonia, diarrhoea and malnutrition",
+            "Preventable diseases"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7870,
+                2066,
+                19132,
+                1010,
+                9820,
+                1013,
+                8387,
+                1010,
+                18583,
+                1010,
+                22939,
+                12171,
+                14490,
+                2050,
+                1998,
+                15451,
+                24072,
+                14778,
+                3258,
+                102
+            ],
+            [
+                101,
+                4652,
+                3085,
+                7870,
+                2066,
+                19132,
+                1010,
+                9820,
+                1013,
+                8387,
+                1010,
+                18583,
+                1010,
+                22939,
+                12171,
+                14490,
+                2050,
+                1998,
+                15451,
+                24072,
+                14778,
+                3258,
+                102
+            ],
+            [
+                101,
+                4652,
+                3085,
+                7870,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57275a505951b619008f889f",
+        "actual_text": [
+            "The Middle and Modern Family",
+            "The Middle and Modern Family",
+            "The Middle and Modern Family"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1996,
+                2690,
+                1998,
+                2715,
+                2155,
+                102
+            ],
+            [
+                101,
+                1996,
+                2690,
+                1998,
+                2715,
+                2155,
+                102
+            ],
+            [
+                101,
+                1996,
+                2690,
+                1998,
+                2715,
+                2155,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "57265d86f1498d1400e8dd52",
+        "actual_text": [
+            "zip\" the mouth shut when the animal is not feeding,",
+            "\"zip\" the mouth shut when the animal is not feeding",
+            "\"zip\" the mouth shut when the animal is not feeding"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14101,
+                1000,
+                1996,
+                2677,
+                3844,
+                2043,
+                1996,
+                4111,
+                2003,
+                2025,
+                8521,
+                1010,
+                102
+            ],
+            [
+                101,
+                1000,
+                14101,
+                1000,
+                1996,
+                2677,
+                3844,
+                2043,
+                1996,
+                4111,
+                2003,
+                2025,
+                8521,
+                102
+            ],
+            [
+                101,
+                1000,
+                14101,
+                1000,
+                1996,
+                2677,
+                3844,
+                2043,
+                1996,
+                4111,
+                2003,
+                2025,
+                8521,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572883a33acd2414000dfa79",
+        "actual_text": [
+            "Central Asian Muslims",
+            "Central Asian Muslims",
+            "Central Asian Muslims"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2430,
+                4004,
+                7486,
+                102
+            ],
+            [
+                101,
+                2430,
+                4004,
+                7486,
+                102
+            ],
+            [
+                101,
+                2430,
+                4004,
+                7486,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572812e74b864d19001643ce",
+        "actual_text": [
+            "Thoreau",
+            "Thoreau",
+            "Thoreau",
+            "Thoreau",
+            "Thoreau's"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                15321,
+                10207,
+                102
+            ],
+            [
+                101,
+                15321,
+                10207,
+                102
+            ],
+            [
+                101,
+                15321,
+                10207,
+                102
+            ],
+            [
+                101,
+                15321,
+                10207,
+                102
+            ],
+            [
+                101,
+                15321,
+                10207,
+                1005,
+                1055,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d6ee6e0d65d21400198255",
+        "actual_text": [
+            "New Orleans",
+            "New Orleans",
+            "New Orleans'"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2047,
+                5979,
+                102
+            ],
+            [
+                101,
+                2047,
+                5979,
+                102
+            ],
+            [
+                101,
+                2047,
+                5979,
+                1005,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572926086aef051400154ac4",
+        "actual_text": [
+            "8\u20134\u20134 system",
+            "7\u20134\u20132\u20133 system",
+            "7\u20134\u20132\u20133"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                1022,
+                1516,
+                1018,
+                1516,
+                1018,
+                2291,
+                102
+            ],
+            [
+                101,
+                1021,
+                1516,
+                1018,
+                1516,
+                1016,
+                1516,
+                1017,
+                2291,
+                102
+            ],
+            [
+                101,
+                1021,
+                1516,
+                1018,
+                1516,
+                1016,
+                1516,
+                1017,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726400589a1e219009ac5f2",
+        "actual_text": [
+            "100\u2013150 species",
+            "100\u2013150",
+            "100\u2013150 species have been validated"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2531,
+                1516,
+                5018,
+                2427,
+                102
+            ],
+            [
+                101,
+                2531,
+                1516,
+                5018,
+                102
+            ],
+            [
+                101,
+                2531,
+                1516,
+                5018,
+                2427,
+                2031,
+                2042,
+                9398,
+                4383,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56f7fde8a6d7ea1400e17367",
+        "actual_text": [
+            "1516",
+            "1516",
+            "1516"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                16528,
+                2575,
+                102
+            ],
+            [
+                101,
+                16528,
+                2575,
+                102
+            ],
+            [
+                101,
+                16528,
+                2575,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56d9c049dc89441400fdb790",
+        "actual_text": [
+            "James Lofton and Mark Malone",
+            "James Lofton and Mark Malone",
+            "James Lofton and Mark Malone"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2508,
+                19459,
+                2239,
+                1998,
+                2928,
+                16321,
+                102
+            ],
+            [
+                101,
+                2508,
+                19459,
+                2239,
+                1998,
+                2928,
+                16321,
+                102
+            ],
+            [
+                101,
+                2508,
+                19459,
+                2239,
+                1998,
+                2928,
+                16321,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572f58d9a23a5019007fc581",
+        "actual_text": [
+            "Swiss-Austrian border",
+            "Swiss-Austrian",
+            "Swiss-Austrian border"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                5364,
+                1011,
+                6161,
+                3675,
+                102
+            ],
+            [
+                101,
+                5364,
+                1011,
+                6161,
+                102
+            ],
+            [
+                101,
+                5364,
+                1011,
+                6161,
+                3675,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730a40f396df91900096237",
+        "actual_text": [
+            "exploitation",
+            "political activity caused exploitation",
+            "political activity caused exploitation",
+            "exploitation",
+            "exploitation"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                14427,
+                102
+            ],
+            [
+                101,
+                2576,
+                4023,
+                3303,
+                14427,
+                102
+            ],
+            [
+                101,
+                2576,
+                4023,
+                3303,
+                14427,
+                102
+            ],
+            [
+                101,
+                14427,
+                102
+            ],
+            [
+                101,
+                14427,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5725bd4b38643c19005acc32",
+        "actual_text": [
+            "Lyndon B. Johnson",
+            "Lyndon B. Johnson",
+            "Lyndon B. Johnson",
+            "Lyndon B. Johnson",
+            "Lyndon B. Johnson"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                23037,
+                1038,
+                1012,
+                3779,
+                102
+            ],
+            [
+                101,
+                23037,
+                1038,
+                1012,
+                3779,
+                102
+            ],
+            [
+                101,
+                23037,
+                1038,
+                1012,
+                3779,
+                102
+            ],
+            [
+                101,
+                23037,
+                1038,
+                1012,
+                3779,
+                102
+            ],
+            [
+                101,
+                23037,
+                1038,
+                1012,
+                3779,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "572837402ca10214002da0f5",
+        "actual_text": [
+            "BBC Television",
+            "BBC Television",
+            "BBC Television"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4035,
+                2547,
+                102
+            ],
+            [
+                101,
+                4035,
+                2547,
+                102
+            ],
+            [
+                101,
+                4035,
+                2547,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5705eb3375f01819005e7767",
+        "actual_text": [
+            "music",
+            "major record companies"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2189,
+                102
+            ],
+            [
+                101,
+                2350,
+                2501,
+                3316,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5730cc2cb54a4f140068cc66",
+        "actual_text": [
+            "one hundred",
+            "one hundred colleges and universities",
+            "around one hundred"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2028,
+                3634,
+                102
+            ],
+            [
+                101,
+                2028,
+                3634,
+                6667,
+                1998,
+                5534,
+                102
+            ],
+            [
+                101,
+                2105,
+                2028,
+                3634,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56e1011ecd28a01900c6740c",
+        "actual_text": [
+            "His lab was torn down",
+            "torn down",
+            "torn down in 1904"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2010,
+                6845,
+                2001,
+                7950,
+                2091,
+                102
+            ],
+            [
+                101,
+                7950,
+                2091,
+                102
+            ],
+            [
+                101,
+                7950,
+                2091,
+                1999,
+                5692,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5727448b5951b619008f87a2",
+        "actual_text": [
+            "2006",
+            "2006",
+            "2006"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2294,
+                102
+            ],
+            [
+                101,
+                2294,
+                102
+            ],
+            [
+                101,
+                2294,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "56bf48cc3aeaaa14008c95ac",
+        "actual_text": [
+            "34\u201319",
+            "34\u201319",
+            "34\u201319"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                4090,
+                1516,
+                2539,
+                102
+            ],
+            [
+                101,
+                4090,
+                1516,
+                2539,
+                102
+            ],
+            [
+                101,
+                4090,
+                1516,
+                2539,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "573081c2069b531400832133",
+        "actual_text": [
+            "distinction",
+            "distinction",
+            "distinction",
+            "distinction",
+            "distinction"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                7835,
+                102
+            ],
+            [
+                101,
+                7835,
+                102
+            ],
+            [
+                101,
+                7835,
+                102
+            ],
+            [
+                101,
+                7835,
+                102
+            ],
+            [
+                101,
+                7835,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "570953a7efce8f15003a7e01",
+        "actual_text": [
+            "Video On Demand",
+            "Video On Demand content",
+            "HD channels and Video On Demand"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                2678,
+                2006,
+                5157,
+                102
+            ],
+            [
+                101,
+                2678,
+                2006,
+                5157,
+                4180,
+                102
+            ],
+            [
+                101,
+                10751,
+                6833,
+                1998,
+                2678,
+                2006,
+                5157,
+                102
+            ]
+        ]
+    },
+    {
+        "id": "5726d9935951b619008f7ff1",
+        "actual_text": [
+            "specialised education and training",
+            "specialised education and training",
+            "specialised education and training"
+        ],
+        "actual_tokenized": [
+            [
+                101,
+                17009,
+                2495,
+                1998,
+                2731,
+                102
+            ],
+            [
+                101,
+                17009,
+                2495,
+                1998,
+                2731,
+                102
+            ],
+            [
+                101,
+                17009,
+                2495,
+                1998,
+                2731,
+                102
+            ]
+        ]
+    }
+]
