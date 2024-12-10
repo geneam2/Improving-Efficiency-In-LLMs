@@ -3,17 +3,25 @@ from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 
 from utils import register_to, MODEL_REGISTRY
 
+import torch
+import torch.nn as nn
+import bitsandbytes as bnb
+from bitsandbytes.nn import Linear8bitLt
+
+
 class ModelClass:
 
     def __init__(self, model_args, data_args):
         self.init_model(model_args)
         self.init_dataset(data_args)
 
+
 @register_to(MODEL_REGISTRY)
 class StrongBaseline(ModelClass):
 
     def init_model(self, args):
-        self.model = AutoModelForQuestionAnswering.from_pretrained(args.model_name)
+        self.model = AutoModelForQuestionAnswering.from_pretrained(
+            args.model_name)
         self.model.to(args.device)
         self.tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
@@ -85,7 +93,6 @@ class StrongBaseline(ModelClass):
             inputs["end_positions"] = end_positions
             return inputs
 
-
         def preprocess_eval(dataset, tokenizer=self.tokenizer):
             '''
                 Input: dataset containing ['id', 'title', 'context', 'question', 'answers']
@@ -107,14 +114,16 @@ class StrongBaseline(ModelClass):
             )
             # returns: dict_keys(['input_ids', 'attention_mask', 'offset_mapping', 'overflow_to_sample_mapping'])
 
-            sample_map = inputs.pop("overflow_to_sample_mapping") # maps each sequence to their original id idx
+            # maps each sequence to their original id idx
+            sample_map = inputs.pop("overflow_to_sample_mapping")
             example_ids = []
             batches = len(inputs["input_ids"])
             for i in range(batches):
                 sample_idx = sample_map[i]
                 example_ids.append(dataset["id"][sample_idx])
 
-                sequence_ids = inputs.sequence_ids(i) # list showing what each position of the input_id represents, None for special tokens, 0 for question, 1 for context
+                # list showing what each position of the input_id represents, None for special tokens, 0 for question, 1 for context
+                sequence_ids = inputs.sequence_ids(i)
                 offset = inputs["offset_mapping"][i]
                 # Get positions only if they're in the context
                 inputs["offset_mapping"][i] = [
@@ -128,8 +137,10 @@ class StrongBaseline(ModelClass):
         train_dataset = dataset["train"]
         val_dataset = dataset["validation"]
 
-        small_train_set = train_dataset.shuffle(seed=42).select(range(8000)) # can probably go 10x higher
-        small_val_set = val_dataset.shuffle(seed=42).select(range(2000)) # can probably go 10x higher
+        small_train_set = train_dataset.shuffle(seed=42).select(
+            range(8000))  # can probably go 10x higher
+        small_val_set = val_dataset.shuffle(seed=42).select(
+            range(2000))  # can probably go 10x higher
 
         self.train_tokenized = small_train_set.map(
             preprocess_train,
@@ -152,6 +163,74 @@ class StrongBaseline(ModelClass):
         )
 
         # Inference
-        self.inference_tokenized = self.eval_tokenized.remove_columns(["example_id", "offset_mapping"])
+        self.inference_tokenized = self.eval_tokenized.remove_columns(
+            ["example_id", "offset_mapping"])
         self.inference_tokenized.set_format("torch")
 
+
+@register_to(MODEL_REGISTRY)
+class LoRA_int8(ModelClass):
+    def init_model(self, args):
+        self.model = AutoModelForQuestionAnswering.from_pretrained(
+            args.model_name, load_in_8bit=True, device_map="auto"
+        )
+        # self.model = AutoModelForQuestionAnswering.from_pretrained(
+        #     args.model_name)
+        # self.model.to(args.device)
+        # self.tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+
+    # def quantize(model):
+    #     torch.save(fp16_model.state_dict(), "lora.pt")
+
+    #     int8_model = nn.Sequential(
+    #         Linear8bitLt(64, 64, has_fp16_weights=False),
+    #         Linear8bitLt(64, 64, has_fp16_weights=False)
+    #     )
+
+    #     int8_model.load_state_dict(torch.load("lora.pt"))
+    #     print(int8_model[0].weight)
+
+    #     int8_model = int8_model.to(0)  # Quantize
+    #     print(int8_model[0].weight)
+    '''
+    quantization aware: quantize weight already before training, train on quantized model
+    - max performance
+    - but different hardware requires different specs
+    - if scheme changes, have to rerun
+
+    post-training quantization after training
+    - how to minimize rounding errors, to already trained models
+    - take any full-precision model, can apply any quantization scheme
+    - more difficult to maintain performance
+
+    static quant
+    - take a representation dataset
+
+    dynamic quant
+    - just want to make model more efficient
+    - lower the bits
+
+    most quant, post-training quantizatio + dynamic quant
+    - take any pre-trained model and quantize
+    - smooth quant, q serve
+
+    FOCUS
+    - pick a quadrant, easy to post-training quantizatio + dynamic quant
+    
+
+    complication
+    - any point within model that requires us to merge two precision types
+    - example, we don't want to fully quantize imputs
+    tokens -> embedded vectors
+
+    salient values -> spikes
+    - saliency, expressiveness is gone with 
+
+    where we apply quantization and keep saliency
+
+
+    factory code - has different purpose
+    - training, data, model
+    pre process data -> send to gpu -> train model -> evaluate -> find loss -> optimization
+    task takes model and trains -> task: chef, model: ingrediants
+    '''
