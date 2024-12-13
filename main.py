@@ -1,5 +1,7 @@
 import sys
+import importlib
 
+from custom_trainer import CustomTrainer
 from utils import (
     MODEL_REGISTRY,
     TASK_REGISTRY,
@@ -7,17 +9,31 @@ from utils import (
     read_config,
 )
 
-def main(mode):
-    model_config, train_config, eval_config, data_config = read_config(f"configs.{mode}")
-    model_class = getattr(MODEL_REGISTRY, mode)
-    task_class = getattr(TASK_REGISTRY, model_config.task)
-    model = model_class(model_config)
-    task = task_class(model)
-    task.train(train_config)
-    task.evaluate(eval_config)
+importlib.import_module("model")
+importlib.import_module("task")
+
+def main_train(config):
+    args = read_config(f"configs.{config}")
+    task_class = TASK_REGISTRY.get(args['task'].task_name)
+    model_fn = MODEL_REGISTRY.get(args['task'].model)
+    task = task_class(args['task'], args['train'], model_fn)
+    trainer = CustomTrainer(task, args.get("wandb_config", None))
+    trainer.train(args['train'])
+
+def main_eval(config):
+    pass
+
+def main_infer(config):
+    pass
 
 if __name__=="__main__":
-    assert len(sys.argv) == 2, "You must input the mode"
+    assert len(sys.argv) == 3, "define mode (train | eval) and config"
     print("Executing python3", sys.argv)
-    main(sys.argv[2])
-
+    mode = sys.argv[1]
+    config = sys.argv[2]
+    if mode == "train":
+        main_train(config)
+    elif mode == "eval":
+        main_eval(config)
+    elif mode == "infer":
+        main_infer(config)

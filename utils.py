@@ -1,4 +1,5 @@
 import json
+import inspect
 import importlib
 
 MODEL_REGISTRY = {}
@@ -29,8 +30,14 @@ def read_config(path):
                 setattr(self, k, i)
 
     config = importlib.import_module(path)
-    
-    return Args(config.model), Args(config.train), Args(config.eval), Args(config.data)
+
+    args = dict()
+    for name, obj in inspect.getmembers(config):
+        if inspect.isclass(obj) and obj.__module__ == config.__name__:
+            args[name] = Args(obj)
+
+    # return Args(config.model), Args(config.train), Args(config.task)
+    return args
 
 if __name__=="__main__":
     # example

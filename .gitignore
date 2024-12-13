@@ -7,3 +7,6 @@ actual_output.json
 simple_actual_output.json
 simple_predicted_output.json
 .DS_Store
+*output*
+results/*
+*local
