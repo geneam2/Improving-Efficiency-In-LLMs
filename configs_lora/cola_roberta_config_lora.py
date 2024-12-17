@@ -10,6 +10,8 @@ class task:
     model = "SequenceClassificationLoRA"
     model_name = "FacebookAI/roberta-base"
     task_name = "CoLA"
+    lora_r = 8
+    lora_alpha = 8
 
 class train:
     learning_rate = 1e-5
@@ -18,7 +20,7 @@ class train:
     report_to = "wandb"
     val_batch = 32
     test_batch = 32
-    train_batch = 8
+    train_batch = 32
     warmup_ratio = 0.06
     grad_accum = 1
     scheduler = "InverseSqrt"

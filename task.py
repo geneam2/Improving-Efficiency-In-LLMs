@@ -41,6 +41,15 @@ class TaskClass:
     def evaluate(self):
         raise NotImplementedError
 
+    def extract_answer_from_output(self, outp):
+        raise NotImplementedError
+
+    def extract_label_from_input(self, inp):
+        raise NotImplementedError
+
+    def compute_metric(self, preds, labels):
+        raise NotImplementedError
+
     def print_model_params(self):
         trainable_params = 0
         total_params = 0
@@ -109,8 +118,10 @@ class SQuADv2(TaskClass):
                         idx -= 1
                     end_positions.append(idx + 1)
 
+
         inputs["start_positions"] = start_positions
         inputs["end_positions"] = end_positions
+        inputs['labels'] = torch.tensor([start_positions, end_positions])
         return inputs
 
     def init_model(self, model_fn, task_args):
@@ -153,7 +164,14 @@ class SQuADv2(TaskClass):
         return hypo.loss
 
     def extract_answer_from_output(self, outp):
-        return outp.logits.argmax(dim=1).detach().tolist()
+        # return outp.logits.argmax(dim=1).detach().tolist()
+        raise NotImplementedError
+
+    def extract_label_from_input(self, inp):
+        raise NotImplementedError
+
+    def compute_metric(self, preds, labels):
+        raise NotImplementedError
 
     def inference(self, inp):
         outp = self.model(**inp)
@@ -171,7 +189,7 @@ class SequenceClassification(TaskClass):
         self.metric = load("glue", self.task_args.task_name.lower())
 
     def init_model(self, model_fn, task_args):
-        if getattr(task_args, "lora_r") is None:
+        if getattr(task_args, "lora_r", None) is None:
             self.model = model_fn(task_args.model_name, num_labels=2)
         else:
             self.model = model_fn(
@@ -208,9 +226,18 @@ class SequenceClassification(TaskClass):
     def extract_answer_from_output(self, outp):
         return outp.logits.argmax(dim=1).detach().tolist()
 
+    def extract_label_from_input(self, inp):
+        return inp['labels'].detach().tolist()
+
     def inference(self, inp):
         outp = self.model(**inp)
         return self.extract_answer_from_output(outp)
+
+    def compute_metric(self, preds, labels):
+        return self.metric.compute(
+            predictions=preds,
+            references=labels,
+        )
 
     def evaluate(self, inp, label):
         pred = self.inference(inp)

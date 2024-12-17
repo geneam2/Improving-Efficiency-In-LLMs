@@ -86,7 +86,7 @@ class CustomTrainer:
                     # ========== forward pass ==========
                     batch = {i:j.to(device) for i,j in batch.items()}
                     outputs = model(**batch)
-                    loss = self.task.loss_function(outputs, batch['labels'])
+                    loss = self.task.loss_function(outputs, batch)
 
                     # ========== backpropagation ==========
                     accelerator.backward(loss)
@@ -96,8 +96,8 @@ class CustomTrainer:
 
                     # ========== logging ==========
                     loss_for_logging = loss.detach().tolist()
-                    losses.append(loss_for_logging*len(batch['labels']))
-                    num_datapoints += len(batch['labels'])
+                    losses.append(loss_for_logging*len(batch))
+                    num_datapoints += len(batch)
                     self.wandb.log({
                         "train/loss": loss_for_logging, 
                         "train/learning_rate": self.scheduler.get_last_lr()[0]
@@ -118,32 +118,29 @@ class CustomTrainer:
                     # ========== forward pass ==========
                     batch = {i:j.to(self.device) for i,j in batch.items()}
                     outputs = model(**batch)
-                    loss = self.task.loss_function(outputs, batch['labels'])
+                    loss = self.task.loss_function(outputs, batch)
 
                     # ========== compute metric ==========
                     preds.extend(
                         self.task.extract_answer_from_output(outputs)
                     )
                     labels.extend(
-                        batch['labels'].detach().tolist()
+                        self.task.extract_label_from_input(batch)
                     )
 
                     # ========== logging ==========
                     val_loss_for_logging = loss.detach().tolist()
-                    val_losses.append(val_loss_for_logging*len(batch['labels']))
-                    num_datapoints += len(batch['labels'])
+                    val_losses.append(val_loss_for_logging*len(batch))
+                    num_datapoints += len(batch)
                     print("Epoch {} validation loss: {}".format(
                         step/val_steps_per_epoch, val_loss_for_logging), end="\r")
 
                 self.wandb.log({"val/loss": sum(val_losses)/num_datapoints})
                 print("Epoch {} avg validation loss: {}".format(
                         epoch, sum(val_losses)/num_datapoints))
-                val_result = self.task.metric.compute(
-                    predictions=preds,
-                    references=labels,
-                )
+                val_result = self.task.compute_metric(preds, labels)
                 print("Epoch {} validation acc: {}".format(
-                    epoch, val_result), end="\r")
+                    epoch, val_result))
                 self.wandb.log({"val/{}".format(i):j for i,j in val_result.items()})
 
     # def evaluate(self, dl):
