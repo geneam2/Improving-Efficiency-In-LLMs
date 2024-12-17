@@ -9,16 +9,17 @@ class task:
 
 class train:
     learning_rate = 1e-5
-    epochs = 5
+    epochs = 3 # 5
     weight_decay = 0.01
     report_to = "wandb"
     val_batch = 32
     test_batch = 32
-    train_batch = 8
+    train_batch = 64 # 8
     warmup_ratio = 0.06
     grad_accum = 1
     scheduler = "InverseSqrt"
-    max_seq_len = 512  
+    max_seq_len = 512 
+    resume_from_checkpoint = False # Eventually, we would want to do checkpointing
 
 class wandb_config:
     project_name = "squad_distilbert"

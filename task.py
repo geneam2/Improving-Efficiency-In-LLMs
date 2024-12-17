@@ -12,9 +12,12 @@ from transformers import (
     AutoTokenizer
 )
 
-
 from utils import register_to, TASK_REGISTRY
 from qa_utils import postprocess_qa_predictions
+
+# GENE ADDED
+from functools import partial
+from transformers.data.metrics.squad_metrics import compute_exact, compute_f1, make_eval_dict
 
 class TaskClass:
 
@@ -65,18 +68,19 @@ class SQuADv2(TaskClass):
     def __init__(self, task_args, train_args, model_fn):
         super().__init__(task_args, train_args, model_fn)
         self.criterion = torch.nn.functional.cross_entropy
-        self.metric = load("squad_v2")
+        self.metric = make_eval_dict # load("squad") # gives an error: 
+        # ValueError: Predictions and/or references don't match the expected format.
+        # Expected format: {'predictions': {'id': Value(dtype='string', id=None), 'prediction_text': Value(dtype='string', id=None), 'no_answer_probability': Value(dtype='float32', id=None)}, 'references': {'id': Value(dtype='string', id=None), 'answers': Sequence(feature={'text': Value(dtype='string', id=None), 'answer_start': Value(dtype='int32', id=None)}, length=-1, id=None)}},
 
     @staticmethod
-    def process_function(examples, tokenizer, max_seq_len=None):
-        max_seq_len = 384 if max_seq_len is None else max_seq_len
+    def process_function(examples, tokenizer, max_seq_len=384):
         questions = [q.strip() for q in examples["question"]]
-
+        
         inputs = tokenizer(
             questions,
             examples["context"],
             max_length=max_seq_len,
-            truncation=True if max_seq_len < 512 else "only_second",
+            truncation=True if max_seq_len <= 512 else "only_second",
             return_offsets_mapping=True,
             padding="max_length",
         )
@@ -118,10 +122,8 @@ class SQuADv2(TaskClass):
                         idx -= 1
                     end_positions.append(idx + 1)
 
-
         inputs["start_positions"] = start_positions
         inputs["end_positions"] = end_positions
-        inputs['labels'] = torch.tensor([start_positions, end_positions])
         return inputs
 
     def init_model(self, model_fn, task_args):
@@ -129,8 +131,10 @@ class SQuADv2(TaskClass):
 
     def prepare(self):
         squad = load_dataset("rajpurkar/squad_v2")
+        # GENE: process_function has 3 params so we need an additional wrapper for max_seq_len
+        process_with_params = partial(self.process_function, tokenizer=self.tokenizer, max_seq_len=self.train_args.max_seq_len)
         tokenized_squad = squad.map(
-            lambda x: self.process_function(x, self.tokenizer),
+            lambda x: process_with_params(x),
             batched=True,
             remove_columns=squad["train"].column_names,
         )
@@ -164,14 +168,34 @@ class SQuADv2(TaskClass):
         return hypo.loss
 
     def extract_answer_from_output(self, outp):
-        # return outp.logits.argmax(dim=1).detach().tolist()
-        raise NotImplementedError
+        # Extracts the most probable start and end logits from the output
+        logit_ans = torch.stack([
+                        outp.start_logits.argmax(dim=1),
+                        outp.end_logits.argmax(dim=1)
+                    ], dim=1).tolist()
+        return logit_ans
 
     def extract_label_from_input(self, inp):
-        raise NotImplementedError
+        # Extracts the actual start and end logits from the input
+        label_ans = torch.stack([
+                        inp['start_positions'],
+                        inp['end_positions']
+                    ], dim=1).tolist()
+        return label_ans
 
     def compute_metric(self, preds, labels):
-        raise NotImplementedError
+        exact_scores = sum([1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)])
+        
+        # FIX f1_scores
+        f1_scores = [1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)]
+        average_f1 = sum(f1_scores) / len(f1_scores)
+
+        metric = {
+            "exact_scores": exact_scores,
+            "f1_scores": average_f1
+        }
+        
+        return metric
 
     def inference(self, inp):
         outp = self.model(**inp)
