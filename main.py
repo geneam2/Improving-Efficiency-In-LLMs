@@ -13,7 +13,8 @@ importlib.import_module("model")
 importlib.import_module("task")
 
 def main_train(config):
-    args = read_config(f"configs.{config}")
+    config_path = f"configs.{config}" if "." not in config else config
+    args = read_config(config_path)
     task_class = TASK_REGISTRY.get(args['task'].task_name)
     model_fn = MODEL_REGISTRY.get(args['task'].model)
     task = task_class(args['task'], args['train'], model_fn)

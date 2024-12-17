@@ -3,6 +3,8 @@ import torch
 from accelerate import Accelerator
 from tqdm import tqdm
 
+from custom_scheduler import InverseSqrtScheduler
+
 class FakeWandB:
 
     def __init__(self):
@@ -14,23 +16,26 @@ class FakeWandB:
 class CustomTrainer:
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    def __init__(self, task, wandb_config):
+    def __init__(self, task, wandb_config, sweep=False):
         self.task = task
-        if wandb_config is not None:
-            wandb.login(key=wandb_config.api_key)
-            wandb.init(
-                # Set the project where this run will be logged
-                project=wandb_config.project_name,
-                name=wandb_config.experiment_name,
-                # Track hyperparameters and run metadata
-                config={
-                    "task":self.task.task_args.__dict__,
-                    "train_args":self.task.train_args.__dict__,
-                }
-            )
+        if sweep:
             self.wandb = wandb
         else:
-            self.wandb = FakeWandB()
+            if wandb_config is not None:
+                wandb.login(key=wandb_config.api_key)
+                wandb.init(
+                    # Set the project where this run will be logged
+                    project=wandb_config.project_name,
+                    name=wandb_config.experiment_name,
+                    # Track hyperparameters and run metadata
+                    config={
+                        "task":self.task.task_args.__dict__,
+                        "train_args":self.task.train_args.__dict__,
+                    }
+                )
+                self.wandb = wandb
+            else:
+                self.wandb = FakeWandB()
 
     def prepare_train(self, args):
         
@@ -39,11 +44,19 @@ class CustomTrainer:
 
         self.optim = torch.optim.AdamW(
             self.task.model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
-        self.scheduler = torch.optim.lr_scheduler.LinearLR(
-            self.optim,
-            start_factor=1e-10,
-            total_iters=total_training_steps*args.warmup_ratio
-        )
+        if getattr(args, "scheduler", None) is None:
+            self.scheduler = torch.optim.lr_scheduler.LinearLR(
+                self.optim,
+                start_factor=1e-10,
+                total_iters=total_training_steps*args.warmup_ratio
+            )
+        elif getattr(args, "scheduler", None) == "InverseSqrt":
+            self.scheduler = InverseSqrtScheduler(
+                optimizer=self.optim,
+                warmup_updates=total_training_steps*args.warmup_ratio,
+                warmup_init_lr=1e-10,
+                lr=args.learning_rate,
+            )
 
         self.task.model = self.task.model.to(self.device)
 
@@ -57,7 +70,7 @@ class CustomTrainer:
         model, self.optim, train_dl, self.scheduler = accelerator.prepare(
             self.task.model, self.optim, train_dl, self.scheduler
         )
-
+        self.task.print_model_params()
         steps_per_epoch = len(train_dl)
         val_steps_per_epoch = len(val_dl)
         for epoch in range(args.epochs):
@@ -67,12 +80,13 @@ class CustomTrainer:
             num_datapoints = 0
 
             for step, batch in enumerate(train_dl):
-                # breakpoint()
+
                 with accelerator.accumulate(model):
+
                     # ========== forward pass ==========
                     batch = {i:j.to(device) for i,j in batch.items()}
                     outputs = model(**batch)
-                    loss = self.task.loss_function(outputs.logits, batch['labels'])
+                    loss = self.task.loss_function(outputs, batch['labels'])
 
                     # ========== backpropagation ==========
                     accelerator.backward(loss)
@@ -99,53 +113,54 @@ class CustomTrainer:
             num_datapoints = 0
             preds = []
             labels = []
-            for step, batch in enumerate(val_dl):
-                # ========== forward pass ==========
-                batch = {i:j.to(self.device) for i,j in batch.items()}
-                outputs = model(**batch)
-                loss = self.task.loss_function(outputs.logits, batch['labels'])
+            with torch.no_grad():
+                for step, batch in enumerate(val_dl):
+                    # ========== forward pass ==========
+                    batch = {i:j.to(self.device) for i,j in batch.items()}
+                    outputs = model(**batch)
+                    loss = self.task.loss_function(outputs, batch['labels'])
 
-                # ========== compute metric ==========
-                preds.extend(
-                    self.task.extract_answer_from_output(outputs)
+                    # ========== compute metric ==========
+                    preds.extend(
+                        self.task.extract_answer_from_output(outputs)
+                    )
+                    labels.extend(
+                        batch['labels'].detach().tolist()
+                    )
+
+                    # ========== logging ==========
+                    val_loss_for_logging = loss.detach().tolist()
+                    val_losses.append(val_loss_for_logging*len(batch['labels']))
+                    num_datapoints += len(batch['labels'])
+                    print("Epoch {} validation loss: {}".format(
+                        step/val_steps_per_epoch, val_loss_for_logging), end="\r")
+
+                self.wandb.log({"val/loss": sum(val_losses)/num_datapoints})
+                print("Epoch {} avg validation loss: {}".format(
+                        epoch, sum(val_losses)/num_datapoints))
+                val_result = self.task.metric.compute(
+                    predictions=preds,
+                    references=labels,
                 )
-                labels.extend(
-                    batch['labels'].detach().tolist()
-                )
+                print("Epoch {} validation acc: {}".format(
+                    epoch, val_result), end="\r")
+                self.wandb.log({"val/{}".format(i):j for i,j in val_result.items()})
 
-                # ========== logging ==========
-                val_loss_for_logging = loss.detach().tolist()
-                val_losses.append(val_loss_for_logging*len(batch['labels']))
-                num_datapoints += len(batch['labels'])
-                print("Epoch {} validation loss: {}".format(
-                    step/val_steps_per_epoch, val_loss_for_logging), end="\r")
-
-            self.wandb.log({"val/loss": sum(val_losses)/num_datapoints})
-            print("Epoch {} avg validation loss: {}".format(
-                    epoch, sum(val_losses)/num_datapoints))
-            val_result = self.task.metric.compute(
-                predictions=preds,
-                references=labels,
-            )
-            print("Epoch {} validation acc: {}".format(
-                epoch, val_result), end="\r")
-            self.wandb.log({"val/{}".format(i):j for i,j in val_result.items()})
-
-    def evaluate(self, dl):
-        pred_list = []
-        label_list = []
-        with torch.no_grad():
-            for inp in dl:
-                preds, labels = self.task.evaluate(inp, inp['label'])
-                pred_list.extend(preds)
-                label_list.extend(labels)
+    # def evaluate(self, dl):
+    #     pred_list = []
+    #     label_list = []
+    #     with torch.no_grad():
+    #         for inp in dl:
+    #             preds, labels = self.task.evaluate(inp, inp['label'])
+    #             pred_list.extend(preds)
+    #             label_list.extend(labels)
     
-        result = self.task.metric.compute(
-            predictions=pred_list,
-            references=label_list,
-        )
+    #     result = self.task.metric.compute(
+    #         predictions=pred_list,
+    #         references=label_list,
+    #     )
 
-        return result
+    #     return result
 
     def inference(self, dl):
         self.task.model.eval()

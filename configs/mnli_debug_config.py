@@ -14,7 +14,7 @@ class train:
     val_batch = 64
     test_batch = 64
     train_batch = 128
-    warmup_ratio = 0.03
+    warmup_ratio = 0.1
     grad_accum = 1
 
 class wandb_config:
