@@ -11,4 +11,4 @@ simple_predicted_output.json
 results/*
 *local
 *log*
-
+checkpoints
