@@ -18,7 +18,7 @@ class train:
     warmup_ratio = 0.06
     grad_accum = 1
     scheduler = "InverseSqrt"
-    max_seq_len = 512 
+    max_seq_len = 512
     checkpoint_path = "checkpoints" 
 
 class wandb_config:

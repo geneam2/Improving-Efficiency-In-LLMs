@@ -44,7 +44,7 @@ class TaskClass:
     def evaluate(self):
         raise NotImplementedError
 
-    def extract_answer_from_output(self, outp):
+    def extract_answer_from_output(self, _, outp):
         raise NotImplementedError
 
     def extract_label_from_input(self, inp):
@@ -68,9 +68,7 @@ class SQuADv2(TaskClass):
     def __init__(self, task_args, train_args, model_fn):
         super().__init__(task_args, train_args, model_fn)
         self.criterion = torch.nn.functional.cross_entropy
-        self.metric = make_eval_dict # load("squad") # gives an error: 
-        # ValueError: Predictions and/or references don't match the expected format.
-        # Expected format: {'predictions': {'id': Value(dtype='string', id=None), 'prediction_text': Value(dtype='string', id=None), 'no_answer_probability': Value(dtype='float32', id=None)}, 'references': {'id': Value(dtype='string', id=None), 'answers': Sequence(feature={'text': Value(dtype='string', id=None), 'answer_start': Value(dtype='int32', id=None)}, length=-1, id=None)}},
+        self.metric = load("squad") 
 
     @staticmethod
     def process_function(examples, tokenizer, max_seq_len=384):
@@ -124,7 +122,46 @@ class SQuADv2(TaskClass):
 
         inputs["start_positions"] = start_positions
         inputs["end_positions"] = end_positions
+        
         return inputs
+
+    # TO REVIEW
+    @staticmethod
+    def process_helper(examples, tokenizer, max_seq_len=384):
+        questions = [q.strip() for q in examples["question"]]
+        contexts = examples["context"]
+
+        inputs = tokenizer(
+            questions,
+            contexts,
+            max_length=max_seq_len,
+            truncation=True if max_seq_len <= 512 else "only_second",
+            return_overflowing_tokens=True,
+            return_offsets_mapping=True,
+            padding="max_length",
+        )
+
+        sample_map = inputs.pop("overflow_to_sample_mapping") 
+        example_ids = []
+        batches = len(inputs["input_ids"])
+        for i in range(batches):
+            sample_idx = sample_map[i]
+            example_ids.append(examples["id"][sample_idx])
+
+            sequence_ids = inputs.sequence_ids(i) 
+            offset = inputs["offset_mapping"][i]
+            filtered_offsets = []
+            for idx, pos in enumerate(offset):
+                if sequence_ids[idx] == 1:
+                    filtered_offsets.append(pos)  # pos should be (start, end)
+                else:
+                    filtered_offsets.append(None)
+            inputs["offset_mapping"][i] = filtered_offsets
+
+        inputs["example_id"] = example_ids
+        inputs["context"] = [contexts[sample_map[i]] for i in range(batches)] 
+        return inputs
+
 
     def init_model(self, model_fn, task_args):
         self.model = model_fn(task_args.model_name)
@@ -150,6 +187,13 @@ class SQuADv2(TaskClass):
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        
+        helper_with_params = partial(self.process_helper, tokenizer=self.tokenizer, max_seq_len=self.train_args.max_seq_len)
+        tokenized_validation_helper = squad['validation'].map(
+            lambda x: helper_with_params(x),
+            batched=True,
+            remove_columns=squad["validation"].column_names,
+        )
         # test_dataloader = DataLoader(
         #     tokenized_squad['test'],
         #     shuffle=False,
@@ -159,7 +203,7 @@ class SQuADv2(TaskClass):
         return (
             train_dataloader,
             validation_dataloader,
-            None,
+            tokenized_validation_helper,
         )
 
     def loss_function(self, hypo, targ):
@@ -167,13 +211,39 @@ class SQuADv2(TaskClass):
         # targ.shape == (bsz)
         return hypo.loss
 
-    def extract_answer_from_output(self, outp):
+    def extract_answer_from_output(self, inp, outp):
         # Extracts the most probable start and end logits from the output
-        logit_ans = torch.stack([
-                        outp.start_logits.argmax(dim=1),
-                        outp.end_logits.argmax(dim=1)
-                    ], dim=1).tolist()
-        return logit_ans
+        # inp: dict_keys(['context', 'input_ids', 'attention_mask', 'offset_mapping', 'example_id'])
+        # outp: dict_keys(['loss', 'start_logits', 'end_logits'])'
+        start_logits = outp["start_logits"]
+        end_logits = outp["end_logits"]
+        context_list = inp["context"]
+        input_ids = inp["input_ids"]
+        offset_mapping = inp["offset_mapping"]
+        ids = inp["example_id"]
+
+        preds = []
+        start_idxs = torch.argmax(start_logits, dim=1)  
+        end_idxs = torch.argmax(end_logits, dim=1) 
+        import ipdb; ipdb.set_trace()
+        for i, input_id in enumerate(input_ids):
+            start_idx = start_idxs[i].item()
+            end_idx = end_idxs[i].item()
+
+            # Validate indices 
+            if (
+                offset_mapping[start_idx] is None or offset_mapping[end_idx] is None or# tokens like [CLS], answer not fully in context
+                end_idx <= start_idx # answer end index comes before start index
+            ):
+                answer_text = ""  
+            else:
+                # Extract answer from context
+                start_char, end_char = offset_mapping[start_idx][0], offset_mapping[end_idx][1]
+                answer_text = context_list[start_char:end_char]
+
+            preds.append({"id": ids, "prediction_text": answer_text})
+
+        return preds
 
     def extract_label_from_input(self, inp):
         # Extracts the actual start and end logits from the input
@@ -184,22 +254,14 @@ class SQuADv2(TaskClass):
         return label_ans
 
     def compute_metric(self, preds, labels):
-        exact_scores = sum([1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)])
-        
-        # FIX f1_scores
-        f1_scores = [1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)]
-        average_f1 = sum(f1_scores) / len(f1_scores)
-
-        metric = {
-            "exact_scores": exact_scores,
-            "f1_scores": average_f1
-        }
-        
-        return metric
+        return self.metric.compute(
+            predictions=preds,
+            references=labels,
+        )
 
     def inference(self, inp):
         outp = self.model(**inp)
-        return self.extract_answer_from_output(outp)
+        return self.extract_answer_from_output(_, outp) # FIX THIS
 
     def evaluate(self, inp, label):
         pred = self.inference(inp)
@@ -247,7 +309,7 @@ class SequenceClassification(TaskClass):
         # targ.shape == (bsz)
         return hypo.loss
 
-    def extract_answer_from_output(self, outp):
+    def extract_answer_from_output(self, _, outp):
         return outp.logits.argmax(dim=1).detach().tolist()
 
     def extract_label_from_input(self, inp):
@@ -255,7 +317,7 @@ class SequenceClassification(TaskClass):
 
     def inference(self, inp):
         outp = self.model(**inp)
-        return self.extract_answer_from_output(outp)
+        return self.extract_answer_from_output(_, outp)
 
     def compute_metric(self, preds, labels):
         return self.metric.compute(

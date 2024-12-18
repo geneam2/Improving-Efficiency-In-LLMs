@@ -125,7 +125,8 @@ class CustomTrainer:
     def train(self, args):
         self.task.model.train()
         device = self.device
-        train_dl, val_dl, test_dl = self.prepare_train(args)
+        # Changed test_dl to tokenized_validation_helper
+        train_dl, val_dl, tokenized_val_helper = self.prepare_train(args)
         accelerator = Accelerator(gradient_accumulation_steps=args.grad_accum)
         model, self.optim, train_dl, self.scheduler = accelerator.prepare(
             self.task.model, self.optim, train_dl, self.scheduler
@@ -146,14 +147,14 @@ class CustomTrainer:
                 losses = []
                 num_datapoints = 0
 
+                '''
                 if current_step > 0:
                     train_dl_iter = iter(train_dl)
                     for _ in range(current_step):
                         next(train_dl_iter)
                 else:
                     train_dl_iter = iter(train_dl)
-
-
+                
                 for batch in train_dl_iter:
 
                     with accelerator.accumulate(model):
@@ -185,9 +186,10 @@ class CustomTrainer:
                         self.save_checkpoint(args.checkpoint_path, epoch, current_step, model, self.optim, self.scheduler)
                     
                     current_step += 1
-
+                
                 print("\nEpoch {} avg training loss: {}".format(
                     epoch, sum(losses)/num_datapoints))
+                '''
 
                 # ========== validation ==========
                 val_losses = []
@@ -195,19 +197,26 @@ class CustomTrainer:
                 preds = []
                 labels = []
                 with torch.no_grad():
-                    for step, batch in enumerate(val_dl):
+
+                    for step, (batch, tokenized_inp) in enumerate(zip(val_dl, tokenized_val_helper)):
                         # ========== forward pass ==========
                         batch = {i:j.to(self.device) for i,j in batch.items()}
                         outputs = model(**batch)
                         loss = self.task.loss_function(outputs, batch)
 
                         # ========== compute metric ==========
+
                         preds.extend(
-                            self.task.extract_answer_from_output(outputs)
+                            self.task.extract_answer_from_output(tokenized_inp, outputs)
                         )
+                        import ipdb; ipdb.set_trace()
                         labels.extend(
                             self.task.extract_label_from_input(batch)
                         )
+
+                        # SANDBOX
+                        val_result = self.task.compute_metric(preds, labels)
+                        import ipdb; ipdb.set_trace()
 
                         # ========== logging ==========
                         val_loss_for_logging = loss.detach().tolist()
