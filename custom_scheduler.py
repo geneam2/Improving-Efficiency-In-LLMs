@@ -36,6 +36,29 @@ class InverseSqrtScheduler():
     def get_last_lr(self):
         return [self._optimizer.param_groups[0]['lr']]
 
+    # GENE ADDED
+    def state_dict(self):
+        return {
+            'n_steps': self.n_steps,
+            'lr': self.lr,
+            'warmup_updates': self.warmup_updates,
+            'warmup_init_lr': self.warmup_init_lr,
+            'lr_step': self.lr_step,
+            'decay_factor': self.decay_factor
+        }
+
+    def load_state_dict(self, state_dict):
+        self.n_steps = state_dict['n_steps']
+        self.lr = state_dict['lr']
+        self.warmup_updates = state_dict['warmup_updates']
+        self.warmup_init_lr = state_dict['warmup_init_lr']
+        self.lr_step = state_dict['lr_step']
+        self.decay_factor = state_dict['decay_factor']
+        # Make sure to update the optimizer's lr as well:
+        if self._optimizer is not None:
+            self._optimizer.param_groups[0]['lr'] = self.lr
+
+
 # @dataclass
 # class InverseSquareRootLRScheduleConfig(FairseqDataclass):
 #     warmup_updates: int = field(

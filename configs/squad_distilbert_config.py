@@ -19,13 +19,15 @@ class train:
     grad_accum = 1
     scheduler = "InverseSqrt"
     max_seq_len = 512 
-    resume_from_checkpoint = False # Eventually, we would want to do checkpointing
+    checkpoint_path = "checkpoints" 
 
 class wandb_config:
     project_name = "squad_distilbert"
     experiment_name = f"{project_name}_{task.task_name}_{datetime.now().strftime('%H_%M_%S_%m%d')}"
     api_key_path = f"{os.path.dirname(os.path.realpath(__file__))}/wandb_api.local"
     api_key = open(api_key_path).readline()
+    resume_from_checkpoint = True
+    existing_run_id = "squad_distilbert_SQuADv2_00_37_53_1218"
 
 class eval:
     pass
