@@ -2,6 +2,7 @@ import sys
 import importlib
 
 from custom_trainer import CustomTrainer
+from custom_evaluator import CustomEvaluator
 from utils import (
     MODEL_REGISTRY,
     TASK_REGISTRY,
@@ -22,10 +23,19 @@ def main_train(config):
     task = task_class(args['task'], args['train'], model_fn)
     trainer = CustomTrainer(task, args.get("wandb_config", None))
     trainer.train(args['train'])
-    trainer.task.model.push_to_hub("model_for_matt_2", token="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")
 
 def main_eval(config):
-    pass
+    config_path = f"configs.{config}" if "." not in config else config
+    args = read_config(config_path)
+    task_class = TASK_REGISTRY.get(args['task'].task_name)
+    if args['eval'].from_hf:
+        model_fn = MODEL_REGISTRY.get(args['eval'].model)
+    else:
+        model_fn = MODEL_REGISTRY.get(args['task'].model)
+
+    task = task_class(args['task'], args['eval'], model_fn)
+    evaluator = CustomEvaluator(task)
+    evaluator.evaluate(args['eval'])
 
 def main_infer(config):
     pass

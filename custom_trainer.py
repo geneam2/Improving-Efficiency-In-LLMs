@@ -10,7 +10,6 @@ from accelerate.utils import ProjectConfiguration
 import os
 import glob
 import re
-import subprocess
 
 from custom_scheduler import InverseSqrtScheduler
 
@@ -248,8 +247,6 @@ class CustomTrainer:
         except KeyboardInterrupt:
             print("Interrupted. Saving checkpoint...")
             self.save_checkpoint(args.checkpoint_path, epoch, current_step, model, self.optim, self.scheduler)
-            # This kills the nvidia process
-            # subprocess.run("sudo fuser -k /dev/nvidia*", shell=True)
             raise
 
     # def evaluate(self, dl):
