@@ -78,7 +78,7 @@ class SQuADv2(TaskClass):
         #     questions,
         #     examples["context"],
         #     max_length=max_seq_len,
-        #     truncation=True if max_seq_len <= 512 else "only_second",
+        #     truncation=True if max_seq_len <= 384 else "only_second",
         #     return_offsets_mapping=True,
         #     padding="max_length",
         # )
@@ -214,7 +214,15 @@ class SQuADv2(TaskClass):
         return inputs
 
     def init_model(self, model_fn, task_args):
-        self.model = model_fn(task_args.model_name)
+        if getattr(task_args, "lora_r", None) is None:
+            self.model = model_fn(task_args.model_name, num_labels=2)
+        else:
+            self.model = model_fn(
+                task_args.model_name,
+                lora_r=task_args.lora_r,
+                lora_alpha=task_args.lora_alpha,
+                num_labels=2
+            )
 
     def prepare(self):
         squad = load_dataset("rajpurkar/squad_v2")
@@ -328,7 +336,7 @@ class SQuADv2(TaskClass):
     def evaluate(self, inp, label):
         pred = self.inference(inp)
         return pred, label.detach().tolist()
-        
+
 
 class SequenceClassification(TaskClass):
 

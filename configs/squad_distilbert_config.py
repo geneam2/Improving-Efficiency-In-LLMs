@@ -9,7 +9,7 @@ class task:
 
 class train:
     learning_rate = 1e-5
-    epochs = 3 # 5
+    epochs = 3
     weight_decay = 0.01
     report_to = "wandb"
     val_batch = 32
@@ -18,15 +18,15 @@ class train:
     warmup_ratio = 0.06
     grad_accum = 1
     scheduler = "InverseSqrt"
-    max_seq_len = 512
-    checkpoint_path = "checkpoints" 
+    max_seq_len = 384
+    checkpoint_path = "checkpoints/squad_distilbert" 
 
 class wandb_config:
     project_name = "squad_distilbert"
     experiment_name = f"{project_name}_{task.task_name}_{datetime.now().strftime('%H_%M_%S_%m%d')}"
     api_key_path = f"{os.path.dirname(os.path.realpath(__file__))}/wandb_api.local"
     api_key = open(api_key_path).readline()
-    resume_from_checkpoint = True
+    resume_from_checkpoint = False
     existing_run_id = "squad_distilbert_SQuADv2_19_01_43_1219"
 
 class eval:
