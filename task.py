@@ -13,7 +13,7 @@ from transformers import (
 )
 
 from utils import register_to, TASK_REGISTRY
-from qa_utils import postprocess_qa_predictions, normalize_answer
+from qa_utils import postprocess_qa_predictions
 
 # GENE ADDED
 from functools import partial
@@ -72,63 +72,55 @@ class SQuADv2(TaskClass):
 
     @staticmethod
     def process_function(examples, tokenizer, max_seq_len=384):
-        questions = [q.strip() for q in examples["question"]]
+        # questions = [q.strip() for q in examples["question"]]
         
+        # inputs = tokenizer(
+        #     questions,
+        #     examples["context"],
+        #     max_length=max_seq_len,
+        #     truncation=True if max_seq_len <= 512 else "only_second",
+        #     return_offsets_mapping=True,
+        #     padding="max_length",
+        # )
+
+        # offset_mapping = inputs.pop("offset_mapping")
+        # answers = examples["answers"]
+        # start_positions = []
+        # end_positions = []
+
+        # for i, offset in enumerate(offset_mapping):
+        #     answer = answers[i]
+        #     if len(answer["answer_start"]) == 0:
+        #         start_positions.append(0)
+        #         end_positions.append(0)
+        #     else:
+        #         start_char = answer["answer_start"][0]
+        #         end_char = answer["answer_start"][0] + len(answer["text"][0])
+        #         sequence_ids = inputs.sequence_ids(i)
+        #         # Find the start and end of the context
+        #         idx = 0
+        #         while sequence_ids[idx] != 1:
+        #             idx += 1
+        #         context_start = idx
+        #         while sequence_ids[idx] == 1:
+        #             idx += 1
+        #         context_end = idx - 1
+        #         # If the answer is not fully inside the context, label it (0, 0)
+        #         if offset[context_start][0] > end_char or offset[context_end][1] < start_char:
+        #             start_positions.append(0)
+        #             end_positions.append(0)
+        #         else:
+        #             # Otherwise it's the start and end token positions
+        #             idx = context_start
+        #             while idx <= context_end and offset[idx][0] <= start_char:
+        #                 idx += 1
+        #             start_positions.append(idx - 1)
+        #             idx = context_end
+        #             while idx >= context_start and offset[idx][1] >= end_char:
+        #                 idx -= 1
+        #             end_positions.append(idx + 1)
         inputs = tokenizer(
-            questions,
-            examples["context"],
-            max_length=max_seq_len,
-            truncation=True if max_seq_len <= 512 else "only_second",
-            return_offsets_mapping=True,
-            padding="max_length",
-        )
-
-        offset_mapping = inputs.pop("offset_mapping")
-        answers = examples["answers"]
-        start_positions = []
-        end_positions = []
-
-        for i, offset in enumerate(offset_mapping):
-            answer = answers[i]
-            if len(answer["answer_start"]) == 0:
-                start_positions.append(0)
-                end_positions.append(0)
-            else:
-                start_char = answer["answer_start"][0]
-                end_char = answer["answer_start"][0] + len(answer["text"][0])
-                sequence_ids = inputs.sequence_ids(i)
-                # Find the start and end of the context
-                idx = 0
-                while sequence_ids[idx] != 1:
-                    idx += 1
-                context_start = idx
-                while sequence_ids[idx] == 1:
-                    idx += 1
-                context_end = idx - 1
-                # If the answer is not fully inside the context, label it (0, 0)
-                if offset[context_start][0] > end_char or offset[context_end][1] < start_char:
-                    start_positions.append(0)
-                    end_positions.append(0)
-                else:
-                    # Otherwise it's the start and end token positions
-                    idx = context_start
-                    while idx <= context_end and offset[idx][0] <= start_char:
-                        idx += 1
-                    start_positions.append(idx - 1)
-                    idx = context_end
-                    while idx >= context_start and offset[idx][1] >= end_char:
-                        idx -= 1
-                    end_positions.append(idx + 1)
-
-        inputs["start_positions"] = start_positions
-        inputs["end_positions"] = end_positions
-        return inputs
-
-    @staticmethod
-    def process_helper(examples, tokenizer, max_seq_len=384):
-        questions = [q.strip() for q in examples["question"]]
-        inputs = tokenizer(
-            questions,
+            examples["question"],
             examples["context"],
             max_length=max_seq_len,
             truncation="only_second",
@@ -136,24 +128,90 @@ class SQuADv2(TaskClass):
             return_offsets_mapping=True,
             padding="max_length",
         )
+        # returns: dict_keys([ids, type_ids, tokens, offsets, attention_mask, special_tokens_mask, overflowing])
 
+        offset_map = inputs.pop("offset_mapping")
+        # cols: [[(0, 0), (0, 4), (5, 15), (16, 18), (19, 28), (29, 35), ...], ...]
         sample_map = inputs.pop("overflow_to_sample_mapping")
+        # rows: [0, 0, 1, 1, 2, 2, 3, 3, ...]
+        answers = examples["answers"]
+
+        start_positions = []
+        end_positions = []
+        for i, offset in enumerate(offset_map):
+            sample_idx = sample_map[i]
+            # Get indices of where the answers are
+            answer = answers[sample_idx]
+            # No answer
+            if len(answer["answer_start"]) == 0 or len(answer["text"]) == 0:
+                start_positions.append(0)
+                end_positions.append(0)
+                continue
+            start_char = answer["answer_start"][0] 
+            end_char = answer["answer_start"][0] + len(answer["text"][0])
+
+            # Get indices of where the context starts and ends in your input_ids
+            sequence_ids = inputs.sequence_ids(i)
+            # [None, 0, 0, 0, 0, 0, 0, 0, None, 1, 1, ...]
+            context_start = sequence_ids.index(1)
+            idx = context_start
+            while sequence_ids[idx] == 1:
+                idx += 1
+            context_end = idx - 1
+
+            # If the answer is not fully inside the context, label is (0, 0)
+            if offset[context_start][0] > start_char or offset[context_end][1] < end_char:
+                start_positions.append(0)
+                end_positions.append(0)
+            else:
+                # Otherwise it's the start and end token positions
+                idx = context_start
+                while idx <= context_end and offset[idx][0] <= start_char:
+                    idx += 1
+                start_positions.append(idx - 1)
+
+                idx = context_end
+                while idx >= context_start and offset[idx][1] >= end_char:
+                    idx -= 1
+                end_positions.append(idx + 1)
+        
+        # Verify our answers are good
+        # answers = [tokenizer.decode(inputs["input_ids"][i][start_positions[i]:end_positions[i]+1], skip_special_tokens=True).strip() for i in range(len(inputs["input_ids"]))]
+
+        inputs["start_positions"] = start_positions
+        inputs["end_positions"] = end_positions
+        return inputs
+
+    @staticmethod
+    def process_helper(examples, tokenizer, max_seq_len=384):
+        inputs = tokenizer(
+            examples["question"],
+            examples["context"],
+            max_length=max_seq_len,
+            truncation="only_second",
+            stride=30,
+            return_overflowing_tokens=True,
+            return_offsets_mapping=True,
+            padding="max_length",
+        )
+
+        sample_map = inputs.pop("overflow_to_sample_mapping") # maps each sequence to their original id idx
         example_ids = []
-        for i in range(len(inputs["input_ids"])):
+        batches = len(inputs["input_ids"])
+        for i in range(batches):
             sample_idx = sample_map[i]
             example_ids.append(examples["id"][sample_idx])
 
-            sequence_ids = inputs.sequence_ids(i)
+            sequence_ids = inputs.sequence_ids(i) # list showing what each position of the input_id represents, None for special tokens, 0 for question, 1 for context
             offset = inputs["offset_mapping"][i]
+            # Get positions only if they're in the context
             inputs["offset_mapping"][i] = [
-                o if sequence_ids[k] == 1 else None for k, o in enumerate(offset)
+                o if sequence_ids[k] == 1 else (0, 0) for k, o in enumerate(offset)
             ]
 
-        inputs["example_id"] = example_ids
         del inputs["offset_mapping"]
-        # del inputs["attention_mask"]
+        inputs["example_id"] = example_ids
         return inputs
-
 
     def init_model(self, model_fn, task_args):
         self.model = model_fn(task_args.model_name)
@@ -193,6 +251,7 @@ class SQuADv2(TaskClass):
         helper_dataloader = DataLoader(
             tokenized_helper,
             shuffle=False,
+            # collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
         
@@ -207,37 +266,53 @@ class SQuADv2(TaskClass):
         # targ.shape == (bsz)
         return hypo.loss
 
-    def extract_answer_from_output(self, outp, input_ids):
-        # Extracts the most probable start and end logits from the output
+    def extract_answer_from_output(self, outp, inp, helper):
         logit_ans = torch.stack([
-                        outp.start_logits.argmax(dim=-1),
-                        outp.end_logits.argmax(dim=-1),
-                    ], dim=1).tolist()
-    
+            outp.start_logits.argmax(dim=-1),
+            outp.end_logits.argmax(dim=-1),
+        ], dim=1).tolist()
+
         decoded_answers = []
         for i, indices in enumerate(logit_ans):
             start_index, end_index = indices
-            if end_index >= start_index:
-                answer = self.tokenizer.decode(input_ids['input_ids'][i][start_index: end_index+1])
-            else:
-                answer = ""
 
-            decoded_answers.append({"prediction_text": normalize_answer(answer), "id": input_ids["example_id"][i]})
+            # Handle invalid spans
+            if end_index < start_index:
+                answer = ""
+            else:
+                # THIS IS THE REASON F1 score is low
+                # Map tokens back to original context
+                # offsets = helper['offset_mapping'][i]
+                # if offsets[0][start_index] and offsets[1][end_index]:
+                #     start_char, end_char = offsets[start_index][0], offsets[end_index][1]
+                #     answer = inp['context'][i][start_char:end_char]
+                # else:
+                #     answer = ""
+                answer_tokens = inp['input_ids'][i][start_index: end_index+1]
+                answer = self.tokenizer.decode(answer_tokens, skip_special_tokens=True).strip()
+
+            decoded_answers.append({"id": helper["example_id"][i], "prediction_text": answer})
         return decoded_answers
+
 
     def extract_label_from_input(self, inp, helper):
         # Extracts the actual start and end logits from the input
-        num_answers = len(inp["start_positions"])
+        num_answers = len(inp["input_ids"])
         label_ans = []
         for i in range(num_answers):
             start_index, end_index = inp["start_positions"][i], inp["end_positions"][i]
-            answer = self.tokenizer.decode(helper['input_ids'][i][start_index: end_index+1])
 
+            if end_index < start_index:
+                answer = ""
+            else:
+                answer_tokens = inp['input_ids'][i][start_index: end_index+1]
+                answer = self.tokenizer.decode(answer_tokens, skip_special_tokens=True).strip()
+            
             label_ans.append({
-                            "answers": {'answer_start': [start_index.item()], 'text': [normalize_answer(answer)]},
                             "id": helper["example_id"][i],
+                            "answers": {'answer_start': [start_index.item()], 'text': [answer]}
                             })
-        
+            
         return label_ans
 
     def compute_metric(self, preds, labels):

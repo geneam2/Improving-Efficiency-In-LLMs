@@ -76,37 +76,37 @@ class CustomTrainer:
         for epoch in range(args.epochs):
 
             # ========== training ==========
-            # losses = []
-            # num_datapoints = 0
+            losses = []
+            num_datapoints = 0
 
-            # for step, batch in enumerate(train_dl):
+            for step, batch in enumerate(train_dl):
 
-            #     with accelerator.accumulate(model):
+                with accelerator.accumulate(model):
 
-            #         # ========== forward pass ==========
-            #         batch = {i:j.to(device) for i,j in batch.items()}
-            #         outputs = model(**batch)
-            #         loss = self.task.loss_function(outputs, batch)
+                    # ========== forward pass ==========
+                    batch = {i:j.to(device) for i,j in batch.items()}
+                    outputs = model(**batch)
+                    loss = self.task.loss_function(outputs, batch)
 
-            #         # ========== backpropagation ==========
-            #         accelerator.backward(loss)
-            #         self.optim.step()
-            #         self.scheduler.step()
-            #         self.optim.zero_grad()
+                    # ========== backpropagation ==========
+                    accelerator.backward(loss)
+                    self.optim.step()
+                    self.scheduler.step()
+                    self.optim.zero_grad()
 
-            #         # ========== logging ==========
-            #         loss_for_logging = loss.detach().tolist()
-            #         losses.append(loss_for_logging*len(batch))
-            #         num_datapoints += len(batch)
-            #         self.wandb.log({
-            #             "train/loss": loss_for_logging, 
-            #             "train/learning_rate": self.scheduler.get_last_lr()[0]
-            #         })
-            #         print("Epoch {} training loss: {}".format(
-            #             step/steps_per_epoch, loss_for_logging), end="\r")
+                    # ========== logging ==========
+                    loss_for_logging = loss.detach().tolist()
+                    losses.append(loss_for_logging*len(batch))
+                    num_datapoints += len(batch)
+                    self.wandb.log({
+                        "train/loss": loss_for_logging, 
+                        "train/learning_rate": self.scheduler.get_last_lr()[0]
+                    })
+                    print("Epoch {} training loss: {}".format(
+                        step/steps_per_epoch, loss_for_logging), end="\r")
 
-            # print("\nEpoch {} avg training loss: {}".format(
-            #     epoch, sum(losses)/num_datapoints))
+            print("\nEpoch {} avg training loss: {}".format(
+                epoch, sum(losses)/num_datapoints))
 
             # ========== validation ==========
             val_losses = []
@@ -121,13 +121,12 @@ class CustomTrainer:
                     loss = self.task.loss_function(outputs, batch)
 
                     # ========== compute metric ==========
-
                     preds.extend(
-                        self.task.extract_answer_from_output(outputs, helper)
+                        self.task.extract_answer_from_output(outputs, batch, helper)
                     )
                     labels.extend(
                         self.task.extract_label_from_input(batch, helper)
-                    )
+                    )  
 
                     # ========== logging ==========
                     val_loss_for_logging = loss.detach().tolist()

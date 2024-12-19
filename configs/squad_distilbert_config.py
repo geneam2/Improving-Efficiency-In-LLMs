@@ -4,8 +4,8 @@ from datetime import datetime
 
 class task:
     model = "QuestionAnsweringModel"
-    # model_name = "distilbert-base-uncased"
-    model_name = "deepset/roberta-base-squad2"
+    model_name = "distilbert-base-uncased"
+    # model_name = "deepset/roberta-base-squad2"
     task_name = "SQuADv2"
 
 class train:
@@ -20,7 +20,6 @@ class train:
     grad_accum = 1
     scheduler = "InverseSqrt"
     max_seq_len = 384 
-    resume_from_checkpoint = False # Eventually, we would want to do checkpointing
 
 class wandb_config:
     project_name = "squad_distilbert"
