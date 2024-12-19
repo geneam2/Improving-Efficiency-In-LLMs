@@ -4,6 +4,28 @@ from typing import Optional, Tuple
 
 import numpy as np
 from tqdm.auto import tqdm
+import re
+import string
+
+# FROM: https://github.com/huggingface/evaluate/blob/main/metrics/squad_v2/compute_score.py
+ARTICLES_REGEX = re.compile(r"\b(a|an|the)\b", re.UNICODE)
+def normalize_answer(s):
+    """Lower text and remove punctuation, articles and extra whitespace."""
+
+    def remove_articles(text):
+        return ARTICLES_REGEX.sub(" ", text)
+
+    def white_space_fix(text):
+        return " ".join(text.split())
+
+    def remove_punc(text):
+        exclude = set(string.punctuation)
+        return "".join(ch for ch in text if ch not in exclude)
+
+    def lower(text):
+        return text.lower()
+
+    return white_space_fix(remove_articles(remove_punc(lower(s))))
 
 def prepare_validation_features(examples, tokenizer):
     # Some of the questions have lots of whitespace on the left, which is not useful and will make the

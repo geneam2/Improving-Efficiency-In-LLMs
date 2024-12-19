@@ -13,7 +13,7 @@ from transformers import (
 )
 
 from utils import register_to, TASK_REGISTRY
-from qa_utils import postprocess_qa_predictions
+from qa_utils import postprocess_qa_predictions, normalize_answer
 
 # GENE ADDED
 from functools import partial
@@ -68,9 +68,7 @@ class SQuADv2(TaskClass):
     def __init__(self, task_args, train_args, model_fn):
         super().__init__(task_args, train_args, model_fn)
         self.criterion = torch.nn.functional.cross_entropy
-        self.metric = make_eval_dict # load("squad") # gives an error: 
-        # ValueError: Predictions and/or references don't match the expected format.
-        # Expected format: {'predictions': {'id': Value(dtype='string', id=None), 'prediction_text': Value(dtype='string', id=None), 'no_answer_probability': Value(dtype='float32', id=None)}, 'references': {'id': Value(dtype='string', id=None), 'answers': Sequence(feature={'text': Value(dtype='string', id=None), 'answer_start': Value(dtype='int32', id=None)}, length=-1, id=None)}},
+        self.metric = load("squad")
 
     @staticmethod
     def process_function(examples, tokenizer, max_seq_len=384):
@@ -126,40 +124,82 @@ class SQuADv2(TaskClass):
         inputs["end_positions"] = end_positions
         return inputs
 
+    @staticmethod
+    def process_helper(examples, tokenizer, max_seq_len=384):
+        questions = [q.strip() for q in examples["question"]]
+        inputs = tokenizer(
+            questions,
+            examples["context"],
+            max_length=max_seq_len,
+            truncation="only_second",
+            return_overflowing_tokens=True,
+            return_offsets_mapping=True,
+            padding="max_length",
+        )
+
+        sample_map = inputs.pop("overflow_to_sample_mapping")
+        example_ids = []
+        for i in range(len(inputs["input_ids"])):
+            sample_idx = sample_map[i]
+            example_ids.append(examples["id"][sample_idx])
+
+            sequence_ids = inputs.sequence_ids(i)
+            offset = inputs["offset_mapping"][i]
+            inputs["offset_mapping"][i] = [
+                o if sequence_ids[k] == 1 else None for k, o in enumerate(offset)
+            ]
+
+        inputs["example_id"] = example_ids
+        del inputs["offset_mapping"]
+        # del inputs["attention_mask"]
+        return inputs
+
+
     def init_model(self, model_fn, task_args):
         self.model = model_fn(task_args.model_name)
 
     def prepare(self):
         squad = load_dataset("rajpurkar/squad_v2")
-        # GENE: process_function has 3 params so we need an additional wrapper for max_seq_len
-        process_with_params = partial(self.process_function, tokenizer=self.tokenizer, max_seq_len=self.train_args.max_seq_len)
-        tokenized_squad = squad.map(
-            lambda x: process_with_params(x),
+        tokenized_squad = squad["validation"].map(
+            lambda x: self.process_function(x,
+                        tokenizer=self.tokenizer, 
+                        max_seq_len=self.train_args.max_seq_len
+                    ),
             batched=True,
             remove_columns=squad["train"].column_names,
         )
-        train_dataloader = DataLoader(
-            tokenized_squad['train'],
-            shuffle=True,
-            collate_fn=self.data_collator,
-            batch_size=self.train_args.train_batch,
-        )
+        # train_dataloader = DataLoader(
+        #     tokenized_squad['train'],
+        #     shuffle=True,
+        #     collate_fn=self.data_collator,
+        #     batch_size=self.train_args.train_batch,
+        # )
         validation_dataloader = DataLoader(
-            tokenized_squad['validation'],
+            tokenized_squad,
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
-        # test_dataloader = DataLoader(
-        #     tokenized_squad['test'],
-        #     shuffle=False,
-        #     collate_fn=self.data_collator,
-        #     batch_size=self.train_args.test_batch,
-        # )
+
+        tokenized_helper = squad["validation"].map(
+            lambda x: self.process_helper(x,
+                        tokenizer=self.tokenizer, 
+                        max_seq_len=self.train_args.max_seq_len
+                    ),
+            batched=True,
+            remove_columns=squad["validation"].column_names,
+        )
+
+        helper_dataloader = DataLoader(
+            tokenized_helper,
+            shuffle=False,
+            batch_size=self.train_args.val_batch,
+        )
+        
         return (
-            train_dataloader,
+            [1],
             validation_dataloader,
-            None,
+            helper_dataloader,
         )
 
     def loss_function(self, hypo, targ):
@@ -167,36 +207,45 @@ class SQuADv2(TaskClass):
         # targ.shape == (bsz)
         return hypo.loss
 
-    def extract_answer_from_output(self, outp):
+    def extract_answer_from_output(self, outp, input_ids):
         # Extracts the most probable start and end logits from the output
         logit_ans = torch.stack([
-                        outp.start_logits.argmax(dim=1),
-                        outp.end_logits.argmax(dim=1)
+                        outp.start_logits.argmax(dim=-1),
+                        outp.end_logits.argmax(dim=-1),
                     ], dim=1).tolist()
-        return logit_ans
+    
+        decoded_answers = []
+        for i, indices in enumerate(logit_ans):
+            start_index, end_index = indices
+            if end_index >= start_index:
+                answer = self.tokenizer.decode(input_ids['input_ids'][i][start_index: end_index+1])
+            else:
+                answer = ""
 
-    def extract_label_from_input(self, inp):
+            decoded_answers.append({"prediction_text": normalize_answer(answer), "id": input_ids["example_id"][i]})
+        return decoded_answers
+
+    def extract_label_from_input(self, inp, helper):
         # Extracts the actual start and end logits from the input
-        label_ans = torch.stack([
-                        inp['start_positions'],
-                        inp['end_positions']
-                    ], dim=1).tolist()
+        num_answers = len(inp["start_positions"])
+        label_ans = []
+        for i in range(num_answers):
+            start_index, end_index = inp["start_positions"][i], inp["end_positions"][i]
+            answer = self.tokenizer.decode(helper['input_ids'][i][start_index: end_index+1])
+
+            label_ans.append({
+                            "answers": {'answer_start': [start_index.item()], 'text': [normalize_answer(answer)]},
+                            "id": helper["example_id"][i],
+                            })
+        
         return label_ans
 
     def compute_metric(self, preds, labels):
-        exact_scores = sum([1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)])
+        return self.metric.compute(
+            predictions=preds,
+            references=labels,
+        )
         
-        # FIX f1_scores
-        f1_scores = [1 if p[0] == a[0] and p[1] == a[1] else 0 for p, a in zip(preds, labels)]
-        average_f1 = sum(f1_scores) / len(f1_scores)
-
-        metric = {
-            "exact_scores": exact_scores,
-            "f1_scores": average_f1
-        }
-        
-        return metric
-
     def inference(self, inp):
         outp = self.model(**inp)
         return self.extract_answer_from_output(outp)

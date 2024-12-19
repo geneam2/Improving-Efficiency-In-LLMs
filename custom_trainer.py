@@ -65,7 +65,7 @@ class CustomTrainer:
     def train(self, args):
         self.task.model.train()
         device = self.device
-        train_dl, val_dl, test_dl = self.prepare_train(args)
+        train_dl, val_dl, val_helper = self.prepare_train(args)
         accelerator = Accelerator(gradient_accumulation_steps=args.grad_accum)
         model, self.optim, train_dl, self.scheduler = accelerator.prepare(
             self.task.model, self.optim, train_dl, self.scheduler
@@ -76,37 +76,37 @@ class CustomTrainer:
         for epoch in range(args.epochs):
 
             # ========== training ==========
-            losses = []
-            num_datapoints = 0
+            # losses = []
+            # num_datapoints = 0
 
-            for step, batch in enumerate(train_dl):
+            # for step, batch in enumerate(train_dl):
 
-                with accelerator.accumulate(model):
+            #     with accelerator.accumulate(model):
 
-                    # ========== forward pass ==========
-                    batch = {i:j.to(device) for i,j in batch.items()}
-                    outputs = model(**batch)
-                    loss = self.task.loss_function(outputs, batch)
+            #         # ========== forward pass ==========
+            #         batch = {i:j.to(device) for i,j in batch.items()}
+            #         outputs = model(**batch)
+            #         loss = self.task.loss_function(outputs, batch)
 
-                    # ========== backpropagation ==========
-                    accelerator.backward(loss)
-                    self.optim.step()
-                    self.scheduler.step()
-                    self.optim.zero_grad()
+            #         # ========== backpropagation ==========
+            #         accelerator.backward(loss)
+            #         self.optim.step()
+            #         self.scheduler.step()
+            #         self.optim.zero_grad()
 
-                    # ========== logging ==========
-                    loss_for_logging = loss.detach().tolist()
-                    losses.append(loss_for_logging*len(batch))
-                    num_datapoints += len(batch)
-                    self.wandb.log({
-                        "train/loss": loss_for_logging, 
-                        "train/learning_rate": self.scheduler.get_last_lr()[0]
-                    })
-                    print("Epoch {} training loss: {}".format(
-                        step/steps_per_epoch, loss_for_logging), end="\r")
+            #         # ========== logging ==========
+            #         loss_for_logging = loss.detach().tolist()
+            #         losses.append(loss_for_logging*len(batch))
+            #         num_datapoints += len(batch)
+            #         self.wandb.log({
+            #             "train/loss": loss_for_logging, 
+            #             "train/learning_rate": self.scheduler.get_last_lr()[0]
+            #         })
+            #         print("Epoch {} training loss: {}".format(
+            #             step/steps_per_epoch, loss_for_logging), end="\r")
 
-            print("\nEpoch {} avg training loss: {}".format(
-                epoch, sum(losses)/num_datapoints))
+            # print("\nEpoch {} avg training loss: {}".format(
+            #     epoch, sum(losses)/num_datapoints))
 
             # ========== validation ==========
             val_losses = []
@@ -114,18 +114,19 @@ class CustomTrainer:
             preds = []
             labels = []
             with torch.no_grad():
-                for step, batch in enumerate(val_dl):
+                for step, (batch, helper) in enumerate(zip(val_dl, val_helper)):
                     # ========== forward pass ==========
                     batch = {i:j.to(self.device) for i,j in batch.items()}
                     outputs = model(**batch)
                     loss = self.task.loss_function(outputs, batch)
 
                     # ========== compute metric ==========
+
                     preds.extend(
-                        self.task.extract_answer_from_output(outputs)
+                        self.task.extract_answer_from_output(outputs, helper)
                     )
                     labels.extend(
-                        self.task.extract_label_from_input(batch)
+                        self.task.extract_label_from_input(batch, helper)
                     )
 
                     # ========== logging ==========
