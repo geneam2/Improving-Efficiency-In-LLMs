@@ -1,0 +1,7 @@
+name: nlp
+channels:
+  - defaults
+  - conda-forge
+  - nvidia
+  - pytorch
+prefix: /opt/conda/envs/nlp
