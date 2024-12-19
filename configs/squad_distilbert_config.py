@@ -10,7 +10,7 @@ class task:
 
 class train:
     learning_rate = 1e-5
-    epochs = 3 # 5
+    epochs = 1 # 5
     weight_decay = 0.01
     report_to = "wandb"
     val_batch = 32

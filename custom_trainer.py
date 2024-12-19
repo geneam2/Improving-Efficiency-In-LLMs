@@ -114,6 +114,7 @@ class CustomTrainer:
             preds = []
             labels = []
             with torch.no_grad():
+                breakpoint()
                 for step, (batch, helper) in enumerate(zip(val_dl, val_helper)):
                     # ========== forward pass ==========
                     batch = {i:j.to(self.device) for i,j in batch.items()}

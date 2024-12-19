@@ -1,5 +1,3 @@
-
-
 import torch
 from torch.utils.data.dataloader import DataLoader
 
@@ -16,7 +14,6 @@ from utils import register_to, TASK_REGISTRY
 from qa_utils import postprocess_qa_predictions
 
 # GENE ADDED
-from functools import partial
 from transformers.data.metrics.squad_metrics import compute_exact, compute_f1, make_eval_dict
 
 class TaskClass:
@@ -218,7 +215,7 @@ class SQuADv2(TaskClass):
 
     def prepare(self):
         squad = load_dataset("rajpurkar/squad_v2")
-        tokenized_squad = squad["validation"].map(
+        tokenized_squad = squad.map(
             lambda x: self.process_function(x,
                         tokenizer=self.tokenizer, 
                         max_seq_len=self.train_args.max_seq_len
@@ -226,14 +223,14 @@ class SQuADv2(TaskClass):
             batched=True,
             remove_columns=squad["train"].column_names,
         )
-        # train_dataloader = DataLoader(
-        #     tokenized_squad['train'],
-        #     shuffle=True,
-        #     collate_fn=self.data_collator,
-        #     batch_size=self.train_args.train_batch,
-        # )
+        train_dataloader = DataLoader(
+            tokenized_squad['train'],
+            shuffle=True,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.train_batch,
+        )
         validation_dataloader = DataLoader(
-            tokenized_squad,
+            tokenized_squad['validation'],
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
@@ -256,7 +253,7 @@ class SQuADv2(TaskClass):
         )
         
         return (
-            [1],
+            train_dataloader,
             validation_dataloader,
             helper_dataloader,
         )
