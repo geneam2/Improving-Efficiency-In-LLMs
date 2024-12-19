@@ -7,12 +7,14 @@ from utils import (
     TASK_REGISTRY,
     TRAINER_REGISTRY,
     read_config,
+    set_seed,
 )
 
 importlib.import_module("model")
 importlib.import_module("task")
 
 def main_train(config):
+    set_seed(42)
     config_path = f"configs.{config}" if "." not in config else config
     args = read_config(config_path)
     task_class = TASK_REGISTRY.get(args['task'].task_name)
@@ -20,6 +22,7 @@ def main_train(config):
     task = task_class(args['task'], args['train'], model_fn)
     trainer = CustomTrainer(task, args.get("wandb_config", None))
     trainer.train(args['train'])
+    trainer.task.model.push_to_hub("model_for_matt_2", token="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")
 
 def main_eval(config):
     pass

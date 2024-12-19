@@ -127,7 +127,14 @@ class SQuADv2(TaskClass):
         return inputs
 
     def init_model(self, model_fn, task_args):
-        self.model = model_fn(task_args.model_name)
+        if getattr(task_args, "lora_r") is None:
+            self.model = model_fn(task_args.model_name)
+        else:
+            self.model = model_fn(
+                task_args.model_name,
+                lora_r=task_args.lora_r,
+                lora_alpha=task_args.lora_alpha,
+            )
 
     def prepare(self):
         squad = load_dataset("rajpurkar/squad_v2")

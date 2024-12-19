@@ -8,13 +8,14 @@ from utils import (
     TASK_REGISTRY,
     TRAINER_REGISTRY,
     read_config,
+    set_seed,
 )
 
 importlib.import_module("model")
 importlib.import_module("task")
 
 def main(config_path):
-
+    set_seed(42)
     args = read_config(config_path)
     task_class = TASK_REGISTRY.get(args['task'].task_name)
     model_fn = MODEL_REGISTRY.get(args['task'].model)
@@ -43,7 +44,7 @@ def main(config_path):
     wandb.agent(sweep_id, function=sweep_function, count=7)
 
 if __name__=="__main__":
-    assert len(sys.argv) == 3, "define mode (train | eval) and config"
+    assert len(sys.argv) == 3, f"{sys.argv} define mode (train | eval) and config"
     print("Executing python3", sys.argv)
     mode = sys.argv[1]
     config = sys.argv[2]

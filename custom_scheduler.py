@@ -19,6 +19,26 @@ class InverseSqrtScheduler():
         if self._optimizer is not None:
             self._optimizer.param_groups[0]['lr'] = self.lr
 
+    def state_dict(self):
+        return {
+            "warmup_updates": self.warmup_updates,
+            "warmup_init_lr": self.warmup_init_lr,
+            "n_steps": self.n_steps,
+            # linearly warmup for the first cfg.warmup_updates
+            "lr_step": self.lr_step,
+            "decay_factor": self.decay_factor,
+            "lr": self.get_last_lr(),
+        }
+    
+    def load_state_dict(self, state_dict):
+            self.warmup_updates = state_dict.get("warmup_updates", self.warmup_updates)
+            self.warmup_init_lr = state_dict.get("warmup_init_lr", self.warmup_init_lr)
+            self.n_steps = state_dict.get("n_steps", self.n_steps)
+            # linearly warmup for the first cfg.warmup_updates
+            self.lr_step = state_dict.get("lr_step", self.lr_step)
+            self.decay_factor = state_dict.get("decay_factor", self.decay_factor)
+            self.lr = state_dict.get("lr", self.lr)
+
     def step(self):
         "Step with the inner optimizer"
         return self._update_learning_rate()

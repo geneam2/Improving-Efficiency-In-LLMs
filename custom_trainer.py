@@ -1,7 +1,10 @@
+import os
+from tqdm import tqdm
+
 import wandb
 import torch
 from accelerate import Accelerator
-from tqdm import tqdm
+from accelerate.utils import ProjectConfiguration
 
 from custom_scheduler import InverseSqrtScheduler
 
@@ -18,6 +21,7 @@ class CustomTrainer:
 
     def __init__(self, task, wandb_config, sweep=False):
         self.task = task
+        self.sweep = sweep
         if sweep:
             self.wandb = wandb
         else:
@@ -66,10 +70,18 @@ class CustomTrainer:
         self.task.model.train()
         device = self.device
         train_dl, val_dl, test_dl = self.prepare_train(args)
-        accelerator = Accelerator(gradient_accumulation_steps=args.grad_accum)
+
+        project_config = ProjectConfiguration(project_dir=args.output_path, automatic_checkpoint_naming=True)
+        # breakpoint()
+        accelerator = Accelerator(project_config=project_config, gradient_accumulation_steps=args.grad_accum)
         model, self.optim, train_dl, self.scheduler = accelerator.prepare(
             self.task.model, self.optim, train_dl, self.scheduler
         )
+        accelerator.register_for_checkpointing(self.scheduler)
+
+        if os.path.exists(args.output_path):
+            accelerator.load_state()
+
         self.task.print_model_params()
         steps_per_epoch = len(train_dl)
         val_steps_per_epoch = len(val_dl)
@@ -142,22 +154,8 @@ class CustomTrainer:
                 print("Epoch {} validation acc: {}".format(
                     epoch, val_result))
                 self.wandb.log({"val/{}".format(i):j for i,j in val_result.items()})
-
-    # def evaluate(self, dl):
-    #     pred_list = []
-    #     label_list = []
-    #     with torch.no_grad():
-    #         for inp in dl:
-    #             preds, labels = self.task.evaluate(inp, inp['label'])
-    #             pred_list.extend(preds)
-    #             label_list.extend(labels)
-    
-    #     result = self.task.metric.compute(
-    #         predictions=pred_list,
-    #         references=label_list,
-    #     )
-
-    #     return result
+            if not self.sweep:
+                accelerator.save_state()
 
     def inference(self, dl):
         self.task.model.eval()
