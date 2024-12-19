@@ -22,11 +22,13 @@ from transformers.data.metrics.squad_metrics import compute_exact, compute_f1, m
 class TaskClass:
 
     def __init__(self, task_args, train_args, model_fn):
-        self.tokenizer = AutoTokenizer.from_pretrained(task_args.model_name)
-        self.data_collator = DataCollatorWithPadding(tokenizer=self.tokenizer)
-        self.init_model(model_fn, task_args)
         self.train_args = train_args
         self.task_args = task_args
+        self.tokenizer = AutoTokenizer.from_pretrained(task_args.model_name)
+        if getattr(train_args, "from_hf", None):
+            task_args.model_name = train_args.checkpoint
+        self.data_collator = DataCollatorWithPadding(tokenizer=self.tokenizer)
+        self.init_model(model_fn, task_args)
 
     def init_model(self):
         raise NotImplementedError
@@ -40,7 +42,10 @@ class TaskClass:
     
     def prepare(self):
         raise NotImplementedError
-    
+
+    def prepare_eval(self):
+        raise NotImplementedError
+
     def evaluate(self):
         raise NotImplementedError
 
@@ -127,7 +132,7 @@ class SQuADv2(TaskClass):
         return inputs
 
     def init_model(self, model_fn, task_args):
-        if getattr(task_args, "lora_r") is None:
+        if getattr(task_args, "lora_r") is None or getattr(self.train_args, "from_hf", None):
             self.model = model_fn(task_args.model_name)
         else:
             self.model = model_fn(
@@ -220,7 +225,7 @@ class SequenceClassification(TaskClass):
         self.metric = load("glue", self.task_args.task_name.lower())
 
     def init_model(self, model_fn, task_args):
-        if getattr(task_args, "lora_r", None) is None:
+        if getattr(task_args, "lora_r", None) is None or getattr(self.train_args, "from_hf", None):
             self.model = model_fn(task_args.model_name, num_labels=2)
         else:
             self.model = model_fn(
@@ -278,7 +283,7 @@ class SequenceClassification(TaskClass):
 class MNLI(SequenceClassification):
 
     def init_model(self, model_fn, task_args):
-        if getattr(task_args, "lora_r") is None:
+        if getattr(task_args, "lora_r") is None or getattr(self.train_args, "from_hf", None):
             self.model = model_fn(task_args.model_name, num_labels=3)
         else:
             self.model = model_fn(
@@ -343,6 +348,22 @@ class MNLI(SequenceClassification):
 @register_to(TASK_REGISTRY)
 class SST2(SequenceClassification):
 
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ["sentence"], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
+
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
         tokenized_ds = ds.map(
@@ -383,6 +404,22 @@ class SST2(SequenceClassification):
 
 @register_to(TASK_REGISTRY)
 class MRPC(SequenceClassification):
+
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
@@ -425,6 +462,21 @@ class MRPC(SequenceClassification):
 @register_to(TASK_REGISTRY)
 class CoLA(SequenceClassification):
 
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['sentence'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
@@ -467,6 +519,21 @@ class CoLA(SequenceClassification):
 @register_to(TASK_REGISTRY)
 class QNLI(SequenceClassification):
 
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['question', 'sentence'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
@@ -508,6 +575,21 @@ class QNLI(SequenceClassification):
 @register_to(TASK_REGISTRY)
 class QQP(SequenceClassification):
 
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['question1', 'question2'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
@@ -549,6 +631,21 @@ class QQP(SequenceClassification):
 @register_to(TASK_REGISTRY)
 class RTE(SequenceClassification):
 
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
@@ -589,6 +686,22 @@ class RTE(SequenceClassification):
 
 @register_to(TASK_REGISTRY)
 class STSB(SequenceClassification):
+
+    def prepare_eval(self):
+        ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower(), split="test")
+        tokenized_ds = ds.map(
+            lambda x: self.process_function(
+                x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
+            batched=True,
+            remove_columns=ds.column_names,
+        )
+        test_dataloader = DataLoader(
+            tokenized_ds,
+            shuffle=False,
+            collate_fn=self.data_collator,
+            batch_size=self.train_args.test_batch,
+        )
+        return test_dataloader
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())

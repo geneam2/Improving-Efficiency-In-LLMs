@@ -84,7 +84,6 @@ class LoRAAdapter(nn.Module, LoRALayer):
             # not training
             return F.linear(x, self.existing_layer.weight, bias=self.existing_layer.bias)
 
-# TODO: Finish the method
 def match_submodules(model: nn.Module, key:str) -> List[str]:
     ret = []
     for name, params in model.named_parameters():
@@ -100,7 +99,6 @@ def match_submodules(model: nn.Module, key:str) -> List[str]:
 def get_submodule(model: nn.Module, module_name:str):
     return model.get_submodule(module_name)
 
-# TODO: Finish the method
 def replace_submodule(model: nn.Module, module_path: str, new_module):
     parent_module, child_module = module_path
     submodule = get_submodule(model, parent_module)
@@ -109,7 +107,6 @@ def replace_submodule(model: nn.Module, module_path: str, new_module):
     ).to(model.device)
     setattr(submodule, child_module, LoRA_submodule)
 
-# TODO: Finish the method
 def inject_adapter(model: nn.Module, match_on: List[str], adapter_fn):
     submodules = []
     for match_ in match_on:
@@ -118,7 +115,6 @@ def inject_adapter(model: nn.Module, match_on: List[str], adapter_fn):
     for submodule in submodules:
         replace_submodule(model, submodule, adapter_fn)
 
-# TODO: Finish the method
 def mark_only_lora_as_trainable(model: nn.Module) -> None:
     for name, params in model.named_parameters():
         params.requires_grad = bool("lora" in name)
@@ -127,7 +123,6 @@ def mark_only_lora_as_trainable(model: nn.Module) -> None:
 inject_adapter(causal_model, ["q_proj_k_proj_v_proj"], lambda x: LoRAAdapter(x, r=8, lora_alpha=8, in_features=x.in_features, out_features=x.out_features))
 mark_only_lora_as_trainable(causal_model)
 
-# TODO: Calculate total parameters and total trainable parameters
 trainable_params = total_params = 0
 for _, params in causal_model.named_parameters():
     total_params += params.numel()
