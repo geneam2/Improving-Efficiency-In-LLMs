@@ -43,6 +43,8 @@ def SequenceClassificationLoRA(model_name, lora_r, lora_alpha, **kwargs):
         lora_alpha=lora_alpha,
         lora_dropout=0.1,
     )
+
+    print_model_size(model)
     return get_peft_model(model, lora_config)
 
 
