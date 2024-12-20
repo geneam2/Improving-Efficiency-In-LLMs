@@ -10,40 +10,6 @@ import torch
 
 from utils import register_to, MODEL_REGISTRY
 
-@register_to(MODEL_REGISTRY)
-def SequenceClassificationModel(model_name, **kwargs):
-    return AutoModelForSequenceClassification.from_pretrained(model_name, **kwargs)
-
-
-@register_to(MODEL_REGISTRY)
-def SequenceClassificationLoRA(model_name, lora_r, lora_alpha, **kwargs):
-    model = AutoModelForSequenceClassification.from_pretrained(model_name, **kwargs)
-    lora_config = LoraConfig(
-        r=lora_r,
-        target_modules=["query", "value"],
-        task_type=TaskType.SEQ_CLS,
-        lora_alpha=lora_alpha,
-        lora_dropout=0.1,
-    )
-    return get_peft_model(model, lora_config)
-
-@register_to(MODEL_REGISTRY)
-def QuestionAnsweringModel(model_name, **kwargs):
-    return AutoModelForQuestionAnswering.from_pretrained(model_name)
-
-@register_to(MODEL_REGISTRY)
-def QuestionAnsweringModelLoRA(model_name, lora_r, lora_alpha, **kwargs):
-    model = AutoModelForQuestionAnswering.from_pretrained(model_name)
-    breakpoint()
-    lora_config = LoraConfig(
-        r=lora_r,
-        target_modules=["query", "value"],
-        task_type=TaskType.QUESTION_ANS,
-        lora_alpha=lora_alpha,
-        lora_dropout=0.1,
-    )
-
-    return get_peft_model(model, lora_config)
 
 def print_model_size(model):
     param_size = 0
@@ -55,6 +21,54 @@ def print_model_size(model):
 
     size_all_mb = (param_size + buffer_size) / 1024**2
     print('Model size: {:.3f}MB'.format(size_all_mb))
+
+
+@register_to(MODEL_REGISTRY)
+def SequenceClassificationModel(model_name, **kwargs):
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **kwargs)
+
+    print_model_size(model)
+    return model
+
+
+@register_to(MODEL_REGISTRY)
+def SequenceClassificationLoRA(model_name, lora_r, lora_alpha, **kwargs):
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **kwargs)
+    lora_config = LoraConfig(
+        r=lora_r,
+        target_modules=["query", "value"],
+        task_type=TaskType.SEQ_CLS,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.1,
+    )
+    return get_peft_model(model, lora_config)
+
+
+@register_to(MODEL_REGISTRY)
+def QuestionAnsweringModel(model_name, **kwargs):
+    model = AutoModelForQuestionAnswering.from_pretrained(model_name)
+
+    print_model_size(model)
+    return model
+
+
+@register_to(MODEL_REGISTRY)
+def QuestionAnsweringModelLoRA(model_name, lora_r, lora_alpha, **kwargs):
+    model = AutoModelForQuestionAnswering.from_pretrained(model_name)
+    lora_config = LoraConfig(
+        r=lora_r,
+        target_modules=["query", "value"],
+        task_type=TaskType.QUESTION_ANS,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.1,
+    )
+
+    print_model_size(model)
+
+    return get_peft_model(model, lora_config)
+
 
 @register_to(MODEL_REGISTRY)
 def QuestionAnsweringModelQLoRA(model_name, lora_r, lora_alpha, **kwargs):
@@ -68,7 +82,7 @@ def QuestionAnsweringModelQLoRA(model_name, lora_r, lora_alpha, **kwargs):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     start_model = AutoModelForQuestionAnswering.from_pretrained(
         model_name, quantization_config=bnb_config,
-        device_map={"":0}
+        device_map={"": 0}
     )
 
     print_model_size(start_model)
@@ -80,17 +94,17 @@ def QuestionAnsweringModelQLoRA(model_name, lora_r, lora_alpha, **kwargs):
         lora_alpha=32,
         lora_dropout=0.05,
         bias="none",
-        target_modules=['attention.q_lin', 'attention.k_lin', 'attention.v_lin']
+        target_modules=['attention.q_lin',
+                        'attention.k_lin', 'attention.v_lin']
     )
-      # prepare int-8 model for training
+    # prepare int-8 model for training
     start_model.gradient_checkpointing_enable()
     start_model = prepare_model_for_kbit_training(start_model)
 
     model = get_peft_model(start_model, lora_config)
     model.print_trainable_parameters()
     for name, param in model.named_parameters():
-      if "qa_outputs" in name:
-          param.requires_grad = True
+        if "qa_outputs" in name:
+            param.requires_grad = True
 
-    print_model_size(model)
     return model
