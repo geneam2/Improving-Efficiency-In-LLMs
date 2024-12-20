@@ -311,26 +311,29 @@ class MNLI(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ["premise", "hypothesis"], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
+            # remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_matched_dataloader = DataLoader(
-            tokenized_ds['validation_matched'],
+            tokenized_ds['validation_matched'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test_matched']['idx']
         test_matched_dataloader = DataLoader(
-            tokenized_ds['test_matched'],
+            tokenized_ds['test_matched'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -366,26 +369,28 @@ class SST2(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ["sentence"], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -423,26 +428,28 @@ class MRPC(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -480,26 +487,28 @@ class CoLA(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['sentence'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -537,26 +546,28 @@ class QNLI(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['question', 'sentence'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -593,26 +604,28 @@ class QQP(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['question1', 'question2'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -649,26 +662,28 @@ class RTE(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,
@@ -705,26 +720,28 @@ class STSB(SequenceClassification):
 
     def prepare(self):
         ds = load_dataset("nyu-mll/glue", self.task_args.task_name.lower())
+        column_names = ds["train"].column_names
+        column_names.remove("label")
         tokenized_ds = ds.map(
             lambda x: self.process_function(
                 x, self.tokenizer, ['sentence1', 'sentence2'], getattr(self.train_args, "max_seq_len", None)),
             batched=True,
-            remove_columns=ds["train"].column_names,
         )
         train_dataloader = DataLoader(
-            tokenized_ds['train'],
+            tokenized_ds['train'].remove_columns(column_names),
             shuffle=True,
             collate_fn=self.data_collator,
             batch_size=self.train_args.train_batch,
         )
         validation_dataloader = DataLoader(
-            tokenized_ds['validation'],
+            tokenized_ds['validation'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.val_batch,
         )
+        self.test_idx = tokenized_ds['test']['idx']
         test_dataloader = DataLoader(
-            tokenized_ds['test'],
+            tokenized_ds['test'].remove_columns(column_names),
             shuffle=False,
             collate_fn=self.data_collator,
             batch_size=self.train_args.test_batch,

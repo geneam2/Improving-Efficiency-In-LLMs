@@ -1,14 +1,15 @@
 
-# importing required libraries
-import torch
-import torch.nn as nn
 import math
 import warnings
+from typing import List
+
+import torch
+import torch.nn as nn
 
 from torch.nn import functional as F
 
-# warnings.simplefilter("ignore")
-# print(torch.__version__)
+warnings.simplefilter("ignore")
+print(torch.__version__)
 
 class LoRALayer():
     def __init__(
@@ -42,15 +43,14 @@ class LoRAAdapter(nn.Module, LoRALayer):
         self.existing_layer = existing_layer
         self.training_mode = False
 
-        ## TODO: Finish this
         self.r = r
         if self.r > 0:
             self.lora_A = nn.Parameter(torch.zeros(
-                (r, in_features), dtype=self.existing_layer.weight.dtype,
+                (num_heads, r, in_features), dtype=self.existing_layer.weight.dtype,
                 device=self.existing_layer.weight.device
             ))
             self.lora_B = nn.Parameter(torch.zeros(
-                (out_features, r), dtype=self.existing_layer.weight.dtype,
+                (out_features, num_heads, r), dtype=self.existing_layer.weight.dtype,
                 device=self.existing_layer.weight.device
             ))
             self.scaling = (self.lora_alpha / self.r)
@@ -81,7 +81,6 @@ class LoRAAdapter(nn.Module, LoRALayer):
             trainable_x = (self.lora_dropout(x) @ self.lora_A.transpose(0,1) @ self.lora_B.transpose(0,1)) * self.scaling
             return frozen_x + trainable_x
         else:
-            # not training
             return F.linear(x, self.existing_layer.weight, bias=self.existing_layer.bias)
 
 def match_submodules(model: nn.Module, key:str) -> List[str]:

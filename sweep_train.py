@@ -1,3 +1,4 @@
+import os
 import sys
 import wandb
 import importlib
@@ -27,9 +28,13 @@ def main(config_path):
         project=wandb_config.project_name,
         # Track hyperparameters and run metadata
     )
+    args['train'].checkpoint_path_parent = args['train'].checkpoint_path
 
     def sweep_function():
+
         wandb.init()
+
+        print("Sweep run name", wandb.config._settings.run_name)
         # note that we define values from `wandb.config`
         # instead of defining hard values
         args['train'].learning_rate = wandb.config.lr
@@ -37,6 +42,9 @@ def main(config_path):
         args['train'].epochs = wandb.config.epochs
         args['task'].lora_r = wandb.config.lora_r
         args['task'].lora_alpha = wandb.config.lora_alpha
+        args['train'].checkpoint_path = os.path.join(
+            args['train'].checkpoint_path_parent, f"config_{wandb.config._settings.run_name}")
+        print("save checkpoint to ", args['train'].checkpoint_path)
         task = task_class(args['task'], args['train'], model_fn)
         trainer = CustomTrainer(task, args.get("wandb_config", None), sweep=True)
         trainer.train(args['train'])

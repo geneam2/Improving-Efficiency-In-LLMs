@@ -1,4 +1,5 @@
 import os
+import json
 from tqdm import tqdm
 
 import wandb
@@ -131,17 +132,13 @@ class CustomTrainer:
         self.task.model.train()
         device = self.device
         train_dl, val_dl, test_dl = self.prepare_train(args)
-
-        project_config = ProjectConfiguration(project_dir=args.output_path, automatic_checkpoint_naming=True)
-        # breakpoint()
-        accelerator = Accelerator(project_config=project_config, gradient_accumulation_steps=args.grad_accum)
+        self.test_dl = test_dl
+        # project_config = ProjectConfiguration(project_dir=args.output_path, automatic_checkpoint_naming=True)
+        # accelerator = Accelerator(project_config=project_config, gradient_accumulation_steps=args.grad_accum)
+        accelerator = Accelerator(gradient_accumulation_steps=args.grad_accum)
         model, self.optim, train_dl, self.scheduler = accelerator.prepare(
             self.task.model, self.optim, train_dl, self.scheduler
         )
-        accelerator.register_for_checkpointing(self.scheduler)
-
-        if os.path.exists(args.output_path):
-            accelerator.load_state()
 
         self.task.print_model_params()
         steps_per_epoch = len(train_dl)
@@ -151,21 +148,21 @@ class CustomTrainer:
         start_epoch, current_step = 0, 0
         if args.checkpoint_path and self.resume_from_checkpoint and os.path.exists(args.checkpoint_path):
             start_epoch, current_step = self.load_checkpoint(args.checkpoint_path, model, self.optim, self.scheduler)
-        
+
         try:
             for epoch in range(start_epoch, args.epochs):
-
+                model.train()
+                current_step += 1
                 # ========== training ==========
                 losses = []
                 num_datapoints = 0
 
-                if current_step > 0:
-                    train_dl_iter = iter(train_dl)
-                    for _ in range(current_step):
-                        next(train_dl_iter)
-                else:
-                    train_dl_iter = iter(train_dl)
-
+                # if current_step > 1:
+                #     train_dl_iter = iter(train_dl)
+                #     for _ in range(current_step):
+                #         next(train_dl_iter)
+                # else:
+                train_dl_iter = iter(train_dl)
 
                 for batch in train_dl_iter:
 
@@ -189,14 +186,14 @@ class CustomTrainer:
                         self.wandb.log({
                             "train/loss": loss_for_logging, 
                             "train/learning_rate": self.scheduler.get_last_lr()[0]
-                        }, step=current_step)
+                        })
                         print("Epoch {} training loss: {}".format(
                             current_step/steps_per_epoch, loss_for_logging), end="\r")
 
                     # ========== save checkpoints ==========
-                    if args.checkpoint_path and current_step % 200 == 0:
+                    if args.checkpoint_path and current_step % args.checkpoint_steps == 0:
                         self.save_checkpoint(args.checkpoint_path, epoch, current_step, model, self.optim, self.scheduler)
-                    
+
                     current_step += 1
 
                 print("\nEpoch {} avg training loss: {}".format(
@@ -236,19 +233,20 @@ class CustomTrainer:
                     print("Epoch {} validation acc: {}".format(
                         epoch, val_result))
                     self.wandb.log({"val/{}".format(i):j for i,j in val_result.items()})
-                
+
                 # ========== save checkpoints ==========
                 if args.checkpoint_path:
                     self.save_checkpoint(args.checkpoint_path, epoch, len(train_dl), model, self.optim, self.scheduler)
-       
-            current_step = 0
-        
+                self.task.model = model
+                self.evaluate(args.checkpoint_path, epoch)
+                current_step = 0
+
         # ========== save checkpoints ==========
         except KeyboardInterrupt:
             print("Interrupted. Saving checkpoint...")
             self.save_checkpoint(args.checkpoint_path, epoch, current_step, model, self.optim, self.scheduler)
             raise
-
+        
     # def evaluate(self, dl):
     #     pred_list = []
     #     label_list = []
@@ -265,11 +263,34 @@ class CustomTrainer:
 
     #     return result
 
-    def inference(self, dl):
-        self.task.model.eval()
-        infer_list = []
+    def evaluate(self, output_path, epoch):
+        test_dl = self.test_dl
+        output_file = os.path.join(output_path, f"epoch_{epoch}_testset_evaluation.log")
+        self.task.print_model_params()
+        model = self.task.model
+        # ========== evaluation ==========
+        preds = []
+        labels = []
+        model.eval()
         with torch.no_grad():
-            for inp in dl:
-                preds = self.task.inference(inp)
-                infer_list.extend(preds)
-        return infer_list
+            for step, batch in enumerate(tqdm(test_dl)):
+                # ========== forward pass ==========
+
+                batch = {i:j.to(self.device) for i,j in batch.items()}
+                batch.pop("labels")
+                outputs = model(**batch)
+
+                # ========== compute metric ==========
+                preds.extend(
+                    self.task.extract_answer_from_output(outputs)
+                )
+
+        assert len(self.task.test_idx) == len(preds), "test idx number and prediction number doesn't match!"
+        results = dict()
+        for idx, pred in zip(self.task.test_idx, preds):
+            results[idx] = pred
+        print(f"Saving inference results @ {output_file}")
+        json.dump(results, open(output_file, 'w'))
+        # val_result = self.task.compute_metric(preds, labels)
+        # print("Test set acc: {}".format(val_result), file=open(output_file, 'w'))
+        # return val_result
