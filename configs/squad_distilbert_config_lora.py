@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 class task:
-    model = "QuestionAnsweringModelQLoRA"
+    model = "QuestionAnsweringModelLoRA"
     model_name = "distilbert-base-uncased"
     task_name = "SQuADv2"
     lora_r = 8

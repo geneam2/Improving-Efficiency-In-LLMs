@@ -60,9 +60,10 @@ def QuestionAnsweringModel(model_name, **kwargs):
 def QuestionAnsweringModelLoRA(model_name, lora_r, lora_alpha, **kwargs):
     model = AutoModelForQuestionAnswering.from_pretrained(model_name)
     lora_config = LoraConfig(
-        r=lora_r,
-        target_modules=["query", "value"],
         task_type=TaskType.QUESTION_ANS,
+        target_modules=['attention.q_lin', 'attention.k_lin', 'attention.v_lin'],
+        inference_mode=False,
+        r=lora_r,
         lora_alpha=lora_alpha,
         lora_dropout=0.1,
     )
@@ -91,13 +92,12 @@ def QuestionAnsweringModelQLoRA(model_name, lora_r, lora_alpha, **kwargs):
 
     lora_config = LoraConfig(
         task_type=TaskType.QUESTION_ANS,
+        target_modules=['attention.q_lin', 'attention.k_lin', 'attention.v_lin'],
         inference_mode=False,
-        r=8,
-        lora_alpha=32,
-        lora_dropout=0.05,
-        bias="none",
-        target_modules=['attention.q_lin',
-                        'attention.k_lin', 'attention.v_lin']
+        r=lora_r,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.1,
+        bias="none"
     )
     # prepare int-8 model for training
     start_model.gradient_checkpointing_enable()

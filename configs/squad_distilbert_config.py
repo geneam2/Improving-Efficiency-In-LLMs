@@ -22,7 +22,7 @@ class train:
     checkpoint_path = "checkpoints/squad_distilbert" 
 
 class wandb_config:
-    project_name = "squad_distilbert"
+    project_name = "squad_distilbert_matt"
     experiment_name = f"{project_name}_{task.task_name}_{datetime.now().strftime('%H_%M_%S_%m%d')}"
     api_key_path = f"{os.path.dirname(os.path.realpath(__file__))}/wandb_api.local"
     api_key = open(api_key_path).readline()
