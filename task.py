@@ -16,8 +16,9 @@ from utils import register_to, TASK_REGISTRY
 from qa_utils import postprocess_qa_predictions
 
 # GENE ADDED
-from functools import partial
 from transformers.data.metrics.squad_metrics import compute_exact, compute_f1, make_eval_dict
+from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
+from transformers import BitsAndBytesConfig
 
 class TaskClass:
 

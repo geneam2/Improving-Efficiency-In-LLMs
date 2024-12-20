@@ -3,15 +3,15 @@ import os
 from datetime import datetime
 
 class task:
-    model = "QuestionAnsweringModel"
+    model = "QuestionAnsweringModelQLoRA"
     model_name = "distilbert-base-uncased"
     task_name = "SQuADv2"
-    lora_r = 32
-    lora_alpha = 32
+    lora_r = 8
+    lora_alpha = 8
 
 class train:
     learning_rate = 1e-5
-    epochs = 3
+    epochs = 1
     weight_decay = 0.01
     report_to = "wandb"
     val_batch = 32
@@ -29,7 +29,7 @@ class wandb_config:
     api_key_path = f"{os.path.dirname(os.path.realpath(__file__))}/wandb_api.local"
     api_key = open(api_key_path).readline()
     resume_from_checkpoint = False
-    existing_run_id = ""
+    existing_run_id = "LoRA_squad_distilbert_SQuADv2_23_26_53_1219"
 
 class eval:
     pass
